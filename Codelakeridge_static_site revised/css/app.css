@@ -1,0 +1,355 @@
+/*=============================== general styling ===============================*/
+* {
+	margin:0;
+	padding:0;
+}
+
+body {
+	margin: 0;
+	background-color: white;
+}
+
+.page {
+	height:100vh;
+}
+
+.sizeBarHeader {
+	height:12vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pageBody {
+	height:76vh;
+}
+
+
+.greyBarFooter {
+	background-color: #C7C8CA;
+	height: 12vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+
+
+/*=============================== general styling for header ===============================*/
+.sizeBarHeader {
+	padding-left:5px;
+	padding-right:5px;
+}
+
+/* .sizeBarHeader img {
+	width:100%;
+} */
+
+img.menuClass, img.arrowClass {
+	width:70%;
+}
+
+.headerBar {
+	height:10vh;
+}
+
+.backBtn, .headerLogo, .burgerMenu {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.headerLogo .logoclass {
+	display:block;
+	height:100%;
+}
+/*=============================== general styling for footer ===============================*/
+
+.footerBox {
+	display:flex;
+	align-items: center;
+	height:100%;
+	width:100%;
+}
+
+
+.footerLogo1, .footerLogo2, .copyRight {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	height:100%;
+}
+
+
+p.copyright-lakeridge {
+	margin-bottom: 0;
+	font-size: 1em;
+}
+/*=============================== layout for splash page===============================*/
+.greyBar01 {
+	background-color: #7C7C7C;
+	height: 10vh;
+}
+
+/* .splashPage {
+	background-color: white;
+} */
+
+.greyBar02 {
+	background-color: #7C7C7C;
+	height: 10vh;
+}
+
+.splashBody {
+	height:80vh;
+	display: flex;
+	align-items: center;
+}
+
+.lakeridge_health_logo {
+	max-width: 100%;
+	height: 90%;
+	margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* .logo_box {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	width:100%;
+	height:100%;
+} */
+
+/*===============================styling for landing page===============================*/
+h2 {
+	font-size: 1.8em;
+}
+
+
+/*===============================styling for main page===============================*/
+
+
+
+
+/*===============================styling for results page===============================*/
+
+.durhamLogo {
+	width: 69%;
+	/* margin: 29px 0px; */
+}
+
+.copyright-lakeridge {
+	font-family: 'Open Sans';
+	font-style: italic;
+	/* margin: 37px 0px; */
+}
+
+.logo_footer {
+	width: 69%;
+	/* margin: 30px 0px; */
+}
+
+/* .logo_box {
+	height: 635px;
+} */
+
+.gray-1 {
+	background-color: #7C7C7C;
+}
+
+.green-1 {
+	background-color: #B2D234;
+}
+
+.gray-2 {
+	background-color: #555;
+}
+
+.gray-3 {
+	background-color: #777;
+}
+
+.gray-4 {
+	background-color: #999;
+}
+
+
+
+.sizeElement01 {
+	height: 30%;
+}
+
+.sizeElement02 {
+	height: 67%;
+}
+
+
+
+
+
+
+#searchBox {
+	border-radius: 10px;
+	margin-top: 20px;
+}
+
+
+
+footer {
+	margin-top: 15px;
+	padding: 10px;
+	text-align: center;
+	color: white;
+	width: auto;
+	height: 50px;
+	background-color: #333;
+}
+
+.clinical_trials_title {
+	font-family: 'Roboto', sans-serif;
+	color: #25AAE1;
+}
+
+.landing_para {
+	font-family: 'Open Sans';
+	color: black;
+} */
+
+.divSpace01 {
+	height: 450px;
+}
+
+.divSpace02 {
+	height: 100px;
+	background-color: white;
+}
+
+.whiteBackground {
+	color: white;
+}
+
+.movieBox {
+	margin-top: 15px;
+}
+
+.deatailsSec {
+	color: white;
+	font-style: italic;
+}
+
+span {
+	font-style: normal;
+}
+
+hr {
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+.plotDetail {
+	color: white;
+}
+
+.card {
+	text-align: center;
+	background-color: #333;
+	color: white;
+}
+
+.studyClass {
+	border-radius: 5px;
+	background-color: #F2F2F2;
+}
+
+.conditionClass {
+	border-radius: 5px;
+	background-color: #F2F2F2;
+}
+
+.otherClass {
+	border-radius: 5px;
+	background-color: #F2F2F2;
+}
+
+.page04Size {
+	height: 500px;
+}
+
+h3 {
+	color: white;
+}
+
+.researchStudy_title {
+	color: #999999;
+}
+
+.condition_title {
+	color: #999999;
+}
+
+.otherTerm_title {
+	color: #999999;
+}
+
+.results_title {
+	color: black;
+}
+
+.recruitment_box {
+	background-color: #F2F2F2;
+	height: 77px;
+	border-radius: 10px;
+}
+
+.openforRecruitmentContainer {
+	background-color: #F2F2F2;
+	height: 77px;
+}
+
+.closedforRecruitmentContainer {
+	background-color: #F2F2F2;
+	height: 77px;
+}
+
+.recruitment_status {
+	color: #444A4D;
+}
+
+.eligibilty_status {
+	color: black;
+}
+
+.contact_box {
+	background-color: #F2F2F2;
+	height: 187px;
+	border-radius: 10px;
+}
+
+.contact_detail {
+	color: black;
+}
+
+.contactInfo {
+	color: black;
+}
+
+.contactDetail01 {
+	color: black;
+}
+
+/* @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+	.contact_box {
+		height: 235px;
+	}
+	.arrowClass {
+		width: 70%;
+		margin: 35px 0px;
+	}
+	.menuclass {
+		width: 80%;
+		margin: 27px 0px;
+	}
+} */
