@@ -1,45 +1,102 @@
+/*=============================== general styling ===============================*/
+
 body {
 	margin: 0;
 	background-color: white;
 }
 
-.greyBar01 {
-	background-color: #7C7C7C;
-	height: 65px;
+.page {
+	height:100vh;
 }
 
-.splashPage {
-	background-color: white;
+.sizeBarHeader {
+	height:10vh;
 }
 
-.sizePage01 {
+
+.pageBody {
+	height:80vh;
+}
+
+/* .sizePage01 {
 	height: 165px;
-}
-
-.greyBar02 {
-	background-color: #7C7C7C;
-	height: 65px;
-}
+} */
 
 .greyBarFooter {
 	background-color: #C7C8CA;
-	height: 125px;
+	height: 10vh;
 }
+
+
+
+/*=============================== general styling for header ===============================*/
+.sizeBarHeader {
+	padding:10px;
+}
+
+/* .sizeBarHeader img {
+	width:100%;
+} */
+
+img.menuClass, img.arrowClass {
+	width:100%;
+}
+/*=============================== general styling for footer ===============================*/
+.footerBox {
+	display:flex;
+	align-items: center;
+}
+
+
+
+/*=============================== layout for splash page===============================*/
+.greyBar01 {
+	background-color: #7C7C7C;
+	height: 10vh;
+}
+
+/* .splashPage {
+	background-color: white;
+} */
+
+.greyBar02 {
+	background-color: #7C7C7C;
+	height: 10vh;
+}
+
+.splashBody {
+	height:80vh;
+	display: flex;
+	align-items: center;
+}
+
+
+/*===============================styling for landing page===============================*/
+
+
+
+
+/*===============================styling for main page===============================*/
+
+
+
+
+/*===============================styling for results page===============================*/
 
 .durhamLogo {
 	width: 69%;
-	margin: 29px 0px;
+	/* margin: 29px 0px; */
 }
 
 .copyright-lakeridge {
 	font-family: 'Open Sans';
 	font-style: italic;
-	margin: 37px 0px;
+	/* margin: 37px 0px; */
 }
 
 .logo_footer {
 	width: 69%;
-	margin: 30px 0px;
+	/* margin: 30px 0px; */
 }
 
 .logo_box {
@@ -140,9 +197,9 @@ body {
 	height: auto;
 }
 
-.sizeBarHeader {
+/* .sizeBarHeader {
 	height: 170px;
-}
+} */
 
 .sizeElement01 {
 	height: 30%;
@@ -152,18 +209,18 @@ body {
 	height: 67%;
 }
 
-.arrowClass {
+/* .arrowClass {
 	width: 70%;
-}
+} */
 
 .logoclass {
-	width: 240px;
-	margin: 22px 0px;
+	width: 100%;
+	/* margin: 22px 0px; */
 }
 
-.menuclass {
+/* .menuclass {
 	width: 80%;
-}
+} */
 
 #logoText {
 	font-size: 50px;
@@ -322,7 +379,7 @@ h3 {
 	color: black;
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+/* @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 	.contact_box {
 		height: 235px;
 	}
@@ -334,4 +391,4 @@ h3 {
 		width: 80%;
 		margin: 27px 0px;
 	}
-}
+} */
