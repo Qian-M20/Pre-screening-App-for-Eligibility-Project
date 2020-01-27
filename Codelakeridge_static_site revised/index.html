@@ -74,7 +74,24 @@
 
 
 		<!-- Footer -->
-		
+		<div class="grid-x">
+			<div class="large-12 medium-12 small-12 greyBarFooter">
+				<!-- <div class="grid-x">
+
+				</div> -->
+				<div class="grid-x footerBox">
+					<div class="large-2 medium-3 small-3 footerLogo1">
+						<img class="logo_footer" src="images/logo_regular.png">
+					</div>
+					<div class="large-2 medium-3 small-3 footerLogo2">
+						<img class="durhamLogo" src="images/durhamCollegeLogo.png">
+					</div>
+					<div class="large-8 medium-6 small-6 copyRight">
+						<p class="copyright-lakeridge"> (C) 2020 Lakeridge Health All Rights Reserved</p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</main>
 	
 	
@@ -107,12 +124,10 @@
 				<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6">
 					<h2 class="researchStudy_title">Choose a research study:</h2>
 				</div>
-			</div>
-			<div class="grid-x">
 				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
 					<select class="studyClass" name="studyName">
-						<option value="lung">Lung Trials</option>
 						<option value="cutaneousOncology">CutaneousOncology Trials</option>
+						<option value="lung">Lung Trials</option>
 						<option value="genito-urinary">Genito-urinary Trials</option>
 						<option value="breast">Breast Trials</option>
 					</select>
@@ -122,13 +137,8 @@
 				<div class="large-8 large-offset-1 medium-6 medium-offset-1 small-6">
 					<h2 class="condition_title">Condition:</h2>
 				</div>
-			</div>
-
-			<div class="grid-x">
 				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
 					<select class="conditionClass" name="conditionName">
-						<option value="smallCell">Small Cell (SCLC)</option>
-						<option value="non-smallCell">Non-small Cell (NSLSC)</option>
 					</select>
 				</div>
 			</div>
@@ -137,10 +147,32 @@
 				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
 					<h2 class="otherTerm_title">Other Term:</h2>
 				</div>
-			</div>
-			<div class="grid-x">
 				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
 					<select class="otherClass" name="otherName">
+						<option value=""></option>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="grid-x">
+				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
+					<h2 class="otherTerm_title">Level 4</h2>
+				</div>
+				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
+					<select class="otherClass_level4" name="otherName">
+						<option value=""></option>
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="grid-x">
+				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
+					<h2 class="otherTerm_title">Level 5</h2>
+				</div>
+				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
+					<select class="otherClass_level5" name="otherName">
 						<option value=""></option>
 						<option value=""></option>
 					</select>
@@ -466,6 +498,7 @@
 	<script src="js/vendor/jquery.js"></script>
 	<script src="js/vendor/what-input.js"></script>
 	<script src="js/vendor/foundation.js"></script>
+	<script src="js/vendor/TweenMax.js"></script>
 	<script src="js/app.js"></script>
 </body>
 
