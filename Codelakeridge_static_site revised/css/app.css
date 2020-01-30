@@ -34,12 +34,15 @@ body {
 	
 }
 
-
+.pageBody{
+	padding-top: 20px;
+}
 
 /*=============================== general styling for header ===============================*/
 .sizeBarHeader {
 	padding-left:5px;
 	padding-right:5px;
+	padding-bottom: 20px;
 }
 
 /* .sizeBarHeader img {
@@ -47,7 +50,7 @@ body {
 } */
 
 img.menuClass, img.arrowClass {
-	width:70%;
+	width:50%;
 }
 
 .headerBar {
@@ -62,14 +65,17 @@ img.menuClass, img.arrowClass {
 
 .headerLogo .logoclass {
 	display:block;
-	height:100%;
+	height:75%;
+}
+.hamburger{
+	width: 100%;
 }
 /*=============================== general styling for footer ===============================*/
 
 .footerBox {
 	display:flex;
 	align-items: center;
-	height:100%;
+	height:auto;
 	width:100%;
 }
 
@@ -79,12 +85,14 @@ img.menuClass, img.arrowClass {
 	align-items: center;
 	justify-content: center;
 	height:100%;
+	padding: 5px;
 }
 
 
 p.copyright-lakeridge {
 	margin-bottom: 0;
-	font-size: 1em;
+	font-size: 0.8em;
+	text-align: right;
 }
 
 .logoFooter{
@@ -95,24 +103,15 @@ p.copyright-lakeridge {
 	width: 50%;
 	/* margin: 29px 0px; */
 }
-
+footer{
+	width: 100%;
+	height: auto;
+	background-color: #C7C8CA;
+}
 /*=============================== layout for splash page===============================*/
-.greyBar01 {
-	background-color: #7C7C7C;
-	height: 10vh;
-}
-
-/* .splashPage {
-	background-color: white;
-} */
-
-.greyBar02 {
-	background-color: #7C7C7C;
-	height: 10vh;
-}
 
 .splashBody {
-	height:80vh;
+	height:100vh;
 	display: flex;
 	align-items: center;
 }
@@ -153,13 +152,39 @@ h2 {
 .landing_para {
 	font-family: 'Open Sans';
 	color: black;
-} */
+}
 
 .divSpace02 {
 	height: 100px;
 	background-color: white;
 }
 
+#landing_img{
+	background-color: #B2D234;
+	display: block;
+}
+.button_startResearch{
+	background-color: #B2D234;
+	color: #444A4D;
+	border-radius: 10px;
+	font-size: 1.2em;
+	font-weight: bolder;
+	margin: 2em 0;
+	padding: 0.5em 1em;
+}
+.landing_page{
+	width: 100%;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	padding: 2em;
+}
+.info a:hover, .btn a:hover{
+	border:1px solid #25AAE1;
+	color: #25AAE1;
+	background-color: inherit;
+}
 /*===============================styling for main page===============================*/
 
 
@@ -287,34 +312,57 @@ h3 {
 	background-color: #F2F2F2;
 	height: 77px;
 	border-radius: 10px;
+	
 }
-
+.recruitment_box h4{
+	font-size: 16px;
+	padding: 0.5em;
+	margin: 0;
+}
+.circle{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
 .openforRecruitmentContainer {
-	background-color: #F2F2F2;
-	height: 77px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 .closedforRecruitmentContainer {
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.recruitmentContainer{
 	background-color: #F2F2F2;
 	height: 77px;
+	border: 1px solid #333;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0.5em;
 }
-
 .recruitment_status {
 	color: #444A4D;
 }
 
 .eligibilty_status {
 	color: black;
+	font-weight: bolder;
 }
 
 .contact_box {
 	background-color: #F2F2F2;
 	height: 187px;
 	border-radius: 10px;
+	padding: 10px 20px;
 }
 
 .contact_detail {
 	color: black;
+	font-style: italic;
+	font-size: 18px;
+	padding-top: 2em;
 }
 
 .contactInfo {
@@ -324,7 +372,35 @@ h3 {
 .contactDetail01 {
 	color: black;
 }
+/*===============================styling for Hamburger menu screen ===============================*/
+#menu{
+	height: 88vh;
+	display: flex;
+	flex-direction: column;
+	background-color: #F2F2F2;
+	position: absolute;
+	right: 0;
+	justify-content: center;
+	align-items: center;
+	display: none;
+	opacity: 0;
+	cursor: pointer;
+	z-index: 1000;
+}
+#menu a{
+	width: 80%;
+	color: #444A4D;
+	font-size: 1.6em;
+	text-transform: uppercase;
+	border-bottom: 1px solid #444A4D;
+	padding: 1rem ;
+	display: flex;
 
+}
+#menu a:hover{
+	color:#B2D234;
+	border-bottom: 1px solid #B2D234;
+}
 /* Tablets */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 	
@@ -353,12 +429,10 @@ h3 {
 		height: 40px;
 		border-radius: 10px;
 	}
-
 	.headerLogo .logoclass {
 		display:block;
-		height:80%;
+		height:50%;
 	}
-
 	img.menuClass, img.arrowClass {
 		width: 100%;
 	}
@@ -366,5 +440,9 @@ h3 {
 	.durhamLogo {
 		width: 100%;
 		/* margin: 29px 0px; */
+	}
+	
+	#menu a{
+		font-size: 1.2em
 	}
 }
