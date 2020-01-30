@@ -34,15 +34,15 @@ body {
 	
 }
 
-.pageBody{
+/* .pageBody{
 	padding-top: 20px;
-}
+} */
 
 /*=============================== general styling for header ===============================*/
 .sizeBarHeader {
 	padding-left:5px;
 	padding-right:5px;
-	padding-bottom: 20px;
+	/* padding-bottom: 20px; */
 }
 
 /* .sizeBarHeader img {
@@ -61,6 +61,7 @@ img.menuClass, img.arrowClass {
 	display:flex;
 	align-items: center;
 	justify-content: center;
+	height: 100%;
 }
 
 .headerLogo .logoclass {
@@ -107,6 +108,10 @@ footer{
 	width: 100%;
 	height: auto;
 	background-color: #C7C8CA;
+}
+
+.logo_footer {
+	width:70%;
 }
 /*=============================== layout for splash page===============================*/
 
@@ -403,7 +408,9 @@ h3 {
 }
 /* Tablets */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-	
+	.logo_footer {
+		width:50%;
+	}
 }
 /* Smartphones */
 @media only screen and (min-device-width: 360px) and (max-device-width: 740px) {
@@ -433,6 +440,11 @@ h3 {
 		display:block;
 		height:50%;
 	}
+
+	.logo_footer {
+		width:100%;
+	}
+
 	img.menuClass, img.arrowClass {
 		width: 100%;
 	}
@@ -441,6 +453,8 @@ h3 {
 		width: 100%;
 		/* margin: 29px 0px; */
 	}
+
+
 	
 	#menu a{
 		font-size: 1.2em
