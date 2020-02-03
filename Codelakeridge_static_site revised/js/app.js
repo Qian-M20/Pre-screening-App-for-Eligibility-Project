@@ -100,6 +100,15 @@ $(document).ready(function () {
         }
     });
 
+    //setup back arrow button to go to the previous page
+    $(".arrowClass").click(function(){
+        $('.landingPage').show();
+    });
+
+    $(".resultsPage .arrowClass").click(function(){
+        $('.mainPage').show();
+    });
+
     //hide all main sections
     $('main').hide();
 
