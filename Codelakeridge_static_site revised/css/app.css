@@ -42,6 +42,9 @@ body {
 	padding-right:5px;
 }
 
+select{
+	height: 50px;
+}
 /* .sizeBarHeader img {
 	width:100%;
 } */
@@ -317,6 +320,38 @@ h3 {
 .recruitment_status {
 	color: #444A4D;
 }
+.result{
+	margin-top: 20px;
+	color: black;
+	min-height: 100px;
+	border-radius: 10px;
+}
+.result .resultName{
+	font-weight: bold;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border-radius: 10px;
+
+}
+.greenHeader{
+	background-color:#b3d235 !important
+}
+.greenDetails{
+	background-color:#b3d23554 !important
+}
+.orangeHeader{
+	background-color:#fc9430 !important
+}
+.orangeDetails{
+	background-color:#fc933054 !important
+}
+
+.result .resultDetails{
+
+	padding: 30px 20px;
+	box-sizing: border-box;
+
+}
 
 .eligibilty_status {
 	color: black;
@@ -339,6 +374,7 @@ h3 {
 .contactDetail01 {
 	color: black;
 }
+
 
 /* @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 	.contact_box {

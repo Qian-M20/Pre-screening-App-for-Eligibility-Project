@@ -13,9 +13,10 @@
             "next":[{
                 "name":"Maintenance",
                 "next":null,
-                "result":[{
-                    "name":"(ABBVIE M16-298 / MERU RN: Marianna)" //eligible
-                }]
+                "result":{
+                    "name":"(ABBVIE M16-298 / MERU RN: Marianna)", //eligible
+                    "type": "closed"
+                }
             }]
         }]
     },
@@ -26,9 +27,10 @@
             "next":[{
                 "name":"Adjuvant Therapy",
                 'next':null,
-                "result":[{
-                    "name":"(CCTG0 BR.13 RN: Marianna)" //eligible
-                }]
+                "result":{
+                    "name":"(CCTG0 BR.13 RN: Marianna)", //eligible
+                    "type": "open"
+                }
             }]
         },
         {
@@ -81,7 +83,8 @@ $(document).ready(function () {
         delay:0,
         opacity: 0
     });
-
+    
+    //function to show main page when start research is clicked
     $(".button_startResearch").click(function (e) { 
         e.preventDefault();
         $('.landingPage').hide();
@@ -95,18 +98,30 @@ $(document).ready(function () {
         
     });
 
+    $(".button_findEligibleStudy").css({opacity:0.2});
 
 
+
+    let option = document.getElementsByClassName("options");
+    //initialy hiding all the droplown list
+    $(option).hide();
     //STUDY selection
     let selectedStudyValue;// to store the value of selected study from the study options
     let selectedStudy;// to store variable correspoinding type of study selected
 
     //on STUDY dropdown change 
+
+    //showing the first dropdown list : Type of study
+    $(option[0]).show();
+    //function to show next level [conditions list] options when type of stydy is selected
     $(".studyClass").change(function (e) { 
+        $(option[1]).hide();
+        $(option[2]).hide();
+        $(option[3]).hide();
         e.preventDefault();
 
         selectedStudyValue= $(".studyClass").val();//getting the value of selected option and assign to selectedStudyValue
-                                                        console.log(selectedStudyValue);
+
         var $el = $(".conditionClass");
         $el.empty(); // remove old options
         switch(selectedStudyValue) {
@@ -120,17 +135,23 @@ $(document).ready(function () {
             $el.append($("<option></option>")
                 .attr("value", key).text(value.name));
         });
+        if(selectedStudy[0].next!=null){
+            $(option[1]).show();
+        }
     });
 
 
     //on  CONDITION dropdown change 
     let selectedConditionIndex;
+
+    //function to show next level [other term options] options when type of condition is selected
     $(".conditionClass").change(function (e) { 
+        $(option[2]).hide();
+        $(option[3]).hide();
 
         selectedStudyValue= $(".conditionClass").val();
         selectedConditionIndex= $(".conditionClass").prop('selectedIndex');
         console.log(selectedConditionIndex);
-
 
         var $el = $(".otherClass");
         $el.empty(); // remove old options
@@ -138,12 +159,20 @@ $(document).ready(function () {
         $el.append($("<option></option>")
             .attr("value", value).text(value.name));
         });
+
+        if(selectedStudy[selectedConditionIndex].next!=null){
+            $(option[2]).show();
+        }
+        if(selectedStudy[selectedConditionIndex]==null){
+            $(".button_findEligibleStudy").css({opacity:1});
+        }
     });
 
 
     //on  OTHER TERM dropdown change 
     let selectedOtherClassIndex;
     $(".otherClass").change(function (e) { 
+        $(option[3]).hide();
 
         selectedOtherClassIndex= $(".otherClass").prop('selectedIndex');
         console.log(selectedOtherClassIndex);
@@ -156,7 +185,57 @@ $(document).ready(function () {
         $el.append($("<option></option>")
             .attr("value", value).text(value.name));
         });
+
+        if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next!=null){
+            $(option[3]).show();
+        }
+        if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next){
+            $(".button_findEligibleStudy").css({opacity:0.5});
+        }
+        if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next==null){
+            $(".button_findEligibleStudy").css({opacity:1});
+            console.log(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex])
+        }
     });
+
+
+    let selectedlevel4Index;
+    $(".otherClass_level4").click(function (e) { 
+        $(option[4]).hide();
+
+        selectedlevel4Index= $(".otherClass_level4").prop('selectedIndex');
+        console.log(selectedlevel4Index);
+
+        if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].next==null){
+            $(".button_findEligibleStudy").css({opacity:1});
+
+            $(".button_findEligibleStudy").click(function (e) { 
+                e.preventDefault();
+                resultName= selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result.name;
+                $(".resultName h2").html(resultName);
+                console.log(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result);
+                if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result.type == "open"){
+                    $(".resultName").addClass("greenHeader");
+                    $(".resultDetails").addClass("greenDetails");
+                }
+                else{
+                    $(".resultName").addClass("orangeHeader");
+                    $(".resultDetails").addClass("orangeDetails");
+                }
+                $('.mainPage').hide();
+                $('.resultsPage').show();
+                TweenMax.to(".mainPage",1,{
+                    delay:1,
+                    x: 1500,
+                    display: "none",
+                    ease: Power1.easeOut,
+                });
+                
+            });
+        }
+    });
+
+    
 
 
 });
