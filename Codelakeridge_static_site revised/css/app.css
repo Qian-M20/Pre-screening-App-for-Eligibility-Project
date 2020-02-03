@@ -74,6 +74,10 @@ img.menuClass, img.arrowClass {
 .hamburger{
 	width: 100%;
 }
+
+.green-1 {
+	background-color: #B2D234;
+}
 /*=============================== general styling for footer ===============================*/
 
 .footerBox {
@@ -195,72 +199,6 @@ h2 {
 }
 /*===============================styling for main page===============================*/
 
-
-
-
-/*===============================styling for results page===============================*/
-
-
-
-/* .logo_box {
-	height: 635px;
-} */
-
-.green-1 {
-	background-color: #B2D234;
-}
-
-
-
-.sizeElement01 {
-	height: 30%;
-}
-
-.sizeElement02 {
-	height: 67%;
-}
-
-#searchBox {
-	border-radius: 10px;
-	margin-top: 20px;
-}
-
-.divSpace01 {
-	height: 450px;
-}
-
-.whiteBackground {
-	color: white;
-}
-
-.movieBox {
-	margin-top: 15px;
-}
-
-.deatailsSec {
-	color: white;
-	font-style: italic;
-}
-
-span {
-	font-style: normal;
-}
-
-hr {
-	border: 1px solid black;
-	border-radius: 5px;
-}
-
-.plotDetail {
-	color: white;
-}
-
-.card {
-	text-align: center;
-	background-color: #333;
-	color: white;
-}
-
 .studyClass {
 	border-radius: 5px;
 	background-color: #F2F2F2;
@@ -274,14 +212,6 @@ hr {
 .otherClass {
 	border-radius: 5px;
 	background-color: #F2F2F2;
-}
-
-.page04Size {
-	height: 500px;
-}
-
-h3 {
-	color: white;
 }
 
 .researchStudy_title {
@@ -298,6 +228,27 @@ h3 {
 
 .results_title {
 	color: black;
+}
+
+
+/*===============================styling for results page===============================*/
+
+
+
+/* .logo_box {
+	height: 635px;
+} */
+
+.whiteBackground {
+	color: white;
+}
+
+.page04Size {
+	height: 500px;
+}
+
+h3 {
+	color: white;
 }
 
 .recruitment_box {
