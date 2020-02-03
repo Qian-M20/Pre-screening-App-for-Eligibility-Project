@@ -45,6 +45,9 @@ body {
 	/* padding-bottom: 20px; */
 }
 
+select{
+	height: 50px;
+}
 /* .sizeBarHeader img {
 	width:100%;
 } */
@@ -349,6 +352,38 @@ h3 {
 }
 .recruitment_status {
 	color: #444A4D;
+}
+.result{
+	margin-top: 20px;
+	color: black;
+	min-height: 100px;
+	border-radius: 10px;
+}
+.result .resultName{
+	font-weight: bold;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border-radius: 10px;
+
+}
+.greenHeader{
+	background-color:#b3d235 !important
+}
+.greenDetails{
+	background-color:#b3d23554 !important
+}
+.orangeHeader{
+	background-color:#fc9430 !important
+}
+.orangeDetails{
+	background-color:#fc933054 !important
+}
+
+.result .resultDetails{
+
+	padding: 30px 20px;
+	box-sizing: border-box;
+
 }
 
 .eligibilty_status {
