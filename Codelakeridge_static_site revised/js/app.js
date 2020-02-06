@@ -6,7 +6,10 @@
         "next":[{
             "name":"Limited",
             "next":null,
-            'result': "NE" // not eligible
+            'result': {
+                "name":"Not Eligible", //eligible
+                "type": "NE"
+            }
         },
         {
             "name": "Extencive",
@@ -38,19 +41,24 @@
             "next":[{
                 "name":"First Line",
                 "next":null,
-                "result":[{
-                    "name":"(ROCHE) BO2914 / BFAST) RN: Sam)" //eligible
-                }]
+                "result":{
+                    "name":"(ROCHE) BO2914 / BFAST) RN: Sam)", //eligible
+                    "type": "open"
+                }
             },{
                 "name":"Second Line",
                 'next':null,
-                "result":[{
-                    "name":"BMS CA209-907" //eligible
-                }]
+                "result":{
+                    "name":"BMS CA209-907", //eligible
+                    "type": "closed"
+                }
             },{
                 "name":"Third Line",
                 "next":null,
-                'result': "NE" // not eligible
+                'result': {
+                    "name":"Not Eligible", //eligible
+                    "type": "NE"
+                }
             }]
         }]
     }];
@@ -64,8 +72,8 @@ $(document).foundation();
 
 
 $(document).ready(function () {
-      //set up hamburger menu to reveal main menu
-      $(".hamburger").click(function(){
+    //set up hamburger menu to reveal main menu
+    $(".hamburger").click(function(){
         if ($(this).attr("data-click-state")=="1")
         {
             $(this).attr("data-click-state", 0);
@@ -100,9 +108,17 @@ $(document).ready(function () {
         }
     });
 
+    //setup back arrow button to go to the previous page
+    $(".arrowClass").click(function(){
+        $('.landingPage').show();
+    });
+
+    $(".resultsPage .arrowClass").click(function(){
+        $('.mainPage').show();
+    });
+
     //hide all main sections
     $('main').hide();
-
     // splash screen appears
     $('.splashPage').show();
     // splash screen disappers after 1s
@@ -111,14 +127,18 @@ $(document).ready(function () {
         x: 1500,
         display: "none",
         ease: Power1.easeOut,
+        onComplete:function()
+		{	
+			// landing page screen appears
+            $('.landingPage').show();
+            TweenMax.from(".landingPage",1,{
+                delay:0,
+                opacity: 0
+            });
+		}
     });
 
-    // landing page screen appears
-    $('.landingPage').show();
-    TweenMax.from(".landingPage",1,{
-        delay:0,
-        opacity: 0
-    });
+    
     
     //function to show main page when start research is clicked
     $(".button_startResearch").click(function (e) { 
@@ -136,7 +156,11 @@ $(document).ready(function () {
 
     $(".button_findEligibleStudy").css({opacity:0.2});
 
-
+    ///////////////////////////
+    //// Test page STARTS  ////
+    ///////////////////////////
+    
+    //option div contains select and corresponding label
     let option = document.getElementsByClassName("options");
     //initialy hiding all the droplown list
     $(option).hide();
@@ -149,12 +173,12 @@ $(document).ready(function () {
     //showing the first dropdown list : Type of study
     $(option[0]).show();
     //function to show next level [conditions list] options when type of stydy is selected
-    $(".studyClass").change(function (e) { 
+    $(".studyClass").change(function (e) {
+        e.preventDefault();
+         
         $(option[1]).hide();
         $(option[2]).hide();
         $(option[3]).hide();
-        e.preventDefault();
-
         selectedStudyValue= $(".studyClass").val();//getting the value of selected option and assign to selectedStudyValue
 
         var $el = $(".conditionClass");
@@ -170,6 +194,11 @@ $(document).ready(function () {
             $el.append($("<option></option>")
                 .attr("value", key).text(value.name));
         });
+
+        $el.append($("<option></option>")
+            .attr({value: "default",
+            selected: "selected"}).text("-- Select Condition --"));
+
         if(selectedStudy[0].next!=null){
             $(option[1]).show();
         }
@@ -181,19 +210,25 @@ $(document).ready(function () {
 
     //function to show next level [other term options] options when type of condition is selected
     $(".conditionClass").change(function (e) { 
+        e.preventDefault();
+
         $(option[2]).hide();
         $(option[3]).hide();
 
         selectedStudyValue= $(".conditionClass").val();
         selectedConditionIndex= $(".conditionClass").prop('selectedIndex');
-        console.log(selectedConditionIndex);
 
         var $el = $(".otherClass");
         $el.empty(); // remove old options
         $.each(selectedStudy[selectedConditionIndex].next, function(key,value) {
-        $el.append($("<option></option>")
+            $el.append($("<option></option>")
             .attr("value", value).text(value.name));
         });
+
+        
+        $el.append($("<option></option>")
+            .attr({value: "default",
+            selected: "selected"}).text("-- Select Condition --"));
 
         if(selectedStudy[selectedConditionIndex].next!=null){
             $(option[2]).show();
@@ -207,6 +242,8 @@ $(document).ready(function () {
     //on  OTHER TERM dropdown change 
     let selectedOtherClassIndex;
     $(".otherClass").change(function (e) { 
+
+        e.preventDefault();
         $(option[3]).hide();
 
         selectedOtherClassIndex= $(".otherClass").prop('selectedIndex');
@@ -220,6 +257,9 @@ $(document).ready(function () {
         $el.append($("<option></option>")
             .attr("value", value).text(value.name));
         });
+        $el.append($("<option></option>")
+            .attr({value: "default",
+            selected: "selected"}).text("-- Select Condition --"));
 
         if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next!=null){
             $(option[3]).show();
@@ -229,7 +269,29 @@ $(document).ready(function () {
         }
         if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next==null){
             $(".button_findEligibleStudy").css({opacity:1});
-            console.log(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex])
+            $(".button_findEligibleStudy").click(function (e) { 
+                e.preventDefault();
+                resultName= selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.name;
+                $(".resultName h2").html(resultName);
+                console.log(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result);
+                if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.type == "open"){
+                    $(".resultName").addClass("greenHeader");
+                    $(".resultDetails").addClass("greenDetails");
+                }
+                else if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.type == "closed"){
+                    $(".resultName").addClass("orangeHeader");
+                    $(".resultDetails").addClass("orangeDetails");
+                }
+                $('.mainPage').hide();
+                $('.resultsPage').show();
+                TweenMax.to(".mainPage",1,{
+                    delay:1,
+                    x: 1500,
+                    display: "none",
+                    ease: Power1.easeOut,
+                });
+                
+            });
         }
     });
 
@@ -254,7 +316,7 @@ $(document).ready(function () {
                     $(".resultName").addClass("greenHeader");
                     $(".resultDetails").addClass("greenDetails");
                 }
-                else{
+                else if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result.type == "closed"){
                     $(".resultName").addClass("orangeHeader");
                     $(".resultDetails").addClass("orangeDetails");
                 }
@@ -270,6 +332,8 @@ $(document).ready(function () {
             });
         }
     });
+
+    //== Test page ENDS  ==//
 });
     
   
