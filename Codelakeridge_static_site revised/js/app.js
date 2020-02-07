@@ -218,6 +218,15 @@ $(".button_startResearch").click(function (e) {
         x: 1500,
         display: "none",
         ease: Power1.easeOut,
+        onComplete:function()
+		{	
+			// landing page screen appears
+            $('.landingPage').show();
+            TweenMax.from(".landingPage",1,{
+                delay:0,
+                opacity: 0
+            });
+		}
     });
     
 });
