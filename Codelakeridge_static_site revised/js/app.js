@@ -206,7 +206,18 @@ TweenMax.to(".splashPage",1,{
     }
 });
 
+//setup back arrow button to go to the previous page
+$("#arrowDivLand").click(function(){
+    $('.landingPage').show();
+    $('.mainPage').hide();
+    $('.resultsPage').hide();
+});
 
+//setup back arrow button to go to the previous page
+$("#arrowDivResults").click(function(){
+    $('.mainPage').show();
+    $('.resultsPage').hide();
+});
 
 //function to show main page when start research is clicked
 $(".button_startResearch").click(function (e) { 
@@ -360,12 +371,12 @@ $(".otherClass").change(function (e) {
             }
             $('.mainPage').hide();
             $('.resultsPage').show();
-            TweenMax.to(".mainPage",1,{
-                delay:1,
-                x: 1500,
-                display: "none",
-                ease: Power1.easeOut,
-            });
+            // TweenMax.to(".mainPage",1,{
+            //     delay:1,
+            //     x: 1500,
+            //     display: "none",
+            //     ease: Power1.easeOut,
+            // });
             
         });
     }
@@ -398,12 +409,12 @@ $(".otherClass_level4").click(function (e) {
             }
             $('.mainPage').hide();
             $('.resultsPage').show();
-            TweenMax.to(".mainPage",1,{
-                delay:1,
-                x: 1500,
-                display: "none",
-                ease: Power1.easeOut,
-            });
+            // TweenMax.to(".mainPage",1,{
+            //     delay:1,
+            //     x: 1500,
+            //     display: "none",
+            //     ease: Power1.easeOut,
+            // });
             
         });
     }
