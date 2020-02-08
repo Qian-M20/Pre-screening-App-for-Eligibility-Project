@@ -358,9 +358,12 @@ $(".otherClass").change(function (e) {
         $(".button_findEligibleStudy").css({opacity:1});
         $(".button_findEligibleStudy").click(function (e) { 
             e.preventDefault();
-            resultName= selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.name;
+            
+    if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next==null){
+        console.log(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex]);
+            debugger;
+            let resultName= selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.name;
             $(".resultName h2").html(resultName);
-            console.log(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result);
             if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.type == "open"){
                 $(".resultName").addClass("greenHeader");
                 $(".resultDetails").addClass("greenDetails");
@@ -371,6 +374,9 @@ $(".otherClass").change(function (e) {
             }
             $('.mainPage').hide();
             $('.resultsPage').show();
+    }
+
+            
             // TweenMax.to(".mainPage",1,{
             //     delay:1,
             //     x: 1500,
