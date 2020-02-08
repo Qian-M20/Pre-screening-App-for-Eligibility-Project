@@ -385,7 +385,7 @@ $(".otherClass").change(function (e) {
 
 let selectedlevel4Index;
 
-$(".otherClass_level4").click(function (e) { 
+$(".otherClass_level4").change(function (e) { 
     $(option[4]).hide();
 
     selectedlevel4Index= $(".otherClass_level4").prop('selectedIndex');
