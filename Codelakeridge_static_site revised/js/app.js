@@ -372,6 +372,10 @@ $(".otherClass").change(function (e) {
                 $(".resultName").addClass("orangeHeader");
                 $(".resultDetails").addClass("orangeDetails");
             }
+            else{
+                $(".resultName").addClass("greyHeader");
+                $(".resultDetails").addClass("greyDetails");
+            }
             $('.mainPage').hide();
             $('.resultsPage').show();
     }
@@ -412,6 +416,11 @@ $(".otherClass_level4").change(function (e) {
             else if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result.type == "closed"){
                 $(".resultName").addClass("orangeHeader");
                 $(".resultDetails").addClass("orangeDetails");
+            }
+            else 
+            {
+            $(".resultName").addClass("greyHeader");
+                $(".resultDetails").addClass("greyDetails");
             }
             $('.mainPage').hide();
             $('.resultsPage').show();
