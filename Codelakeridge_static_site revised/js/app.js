@@ -11,7 +11,7 @@ let lung=[{
         }
     },
     {
-        "name": "Extencive",
+        "name": "Extensive",
         "next":[{
             "name":"Maintenance",
             "next":null,
