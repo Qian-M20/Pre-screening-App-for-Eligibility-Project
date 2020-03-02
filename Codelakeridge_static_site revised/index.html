@@ -114,67 +114,99 @@
 		</div>
 		
 		<!-- MAIN PAGE body -->
-		<section class="pageBody grid-container"><div class="grid-x options">
-				<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6">
-					<h2 class="researchStudy_title">Choose a research study:</h2>
-				</div>
-				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-					<select class="studyClass" name="studyName">
-						<option value="">-- Select condition--</option>
-						<option value="cutaneousOncology">CutaneousOncology Trials</option>
-						<option value="lung">Lung Trials</option>
-						<option value="genito-urinary">Genito-urinary Trials</option>
-						<option value="breast">Breast Trials</option>
-					</select>
-				</div>
-			</div>
+		<section class="pageBody grid-container">
 			<div class="grid-x options">
-				<div class="large-8 large-offset-1 medium-6 medium-offset-1 small-6">
-					<h2 class="condition_title">Condition:</h2>
-				</div>
-				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-					<select class="conditionClass" name="conditionName">
-					</select>
-				</div>
-			</div>
-	
-			<div class="grid-x options">
-				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-					<h2 class="otherTerm_title">Other Term:</h2>
-				</div>
-				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-					<select class="otherClass" name="otherName">
-					</select>
-				</div>
-			</div>
-	
-			<div class="grid-x options">
-				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-					<h2 class="otherTerm_title">Level 4</h2>
-				</div>
-				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-					<select class="otherClass_level4" name="otherName">
-						<option value=""></option>
-						<option value=""></option>
-					</select>
-				</div>
-			</div>
-	
-			<div class="grid-x options">
-				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-					<h2 class="otherTerm_title">Level 5</h2>
-				</div>
-				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-					<select class="otherClass_level5" name="otherName">
-						<option value=""></option>
-						<option value=""></option>
-					</select>
-				</div>
-			</div>
-	
-				<div class="grid-x btn">
-					<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10 small-offset-1">
-						<a href="#" class="button button_findEligibleStudy">Find Eligible Study</a>
+				<div class="optionList">
+
+					<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6">
+						<h2 class="researchStudy_title">Choose a research study:</h2>
+					</div>
+					
+					<!-- Condition -->
+					<label class="radioOptions condition large-8 large-offset-1 medium-10 medium-offset-1 small-6">
+						<label>
+							<input class="conditions" type="radio" name="condition" value="0"/>
+							<i>Lung</i>
+						</label>
+						<label>
+							<input  class="conditions" type="radio" name="condition" value="1"/>
+							<i>Geneto Urinary</i>
+						</label>
+						<label>
+							<input  class="conditions" type="radio" name="condition" value="2"/>
+							<i>Cutaneous</i> 
+						</label>  
+						<label>
+							<input  class="conditions" type="radio" name="condition" value="3"/>
+							<i>Breast</i> 
+						</label>
+					</label>
+					<!-- LEVEL  1 -->
+					<label class="radioOptions lvl1 large-8 large-offset-1 medium-10 medium-offset-1 small-6">
+						
+					</label>
+					<!-- LEVEL  2 -->
+					<label class="radioOptions lvl2 large-8 large-offset-1 medium-10 medium-offset-1 small-6">
+						<label>
+							<input type="radio" name="response" value=""/>
+							<i>Lung</i>
+						</label>
+						<label>
+							<input  type="radio" name="response" value=""/>
+							<i>Geneto Urinary</i>
+						</label>
+						<label>
+							<input  type="radio" name="response" value=""/>
+							<i>Cutaneous</i> 
+						</label>  
+						<label>
+							<input  type="radio" name="response" value=""/>
+							<i>Breast</i> 
+						</label>
+					</label>
+					<!-- LEVEL  3 -->
+					<label class="radioOptions lvl3 large-8 large-offset-1 medium-10 medium-offset-1 small-6">
+						<label>
+							<input type="radio" name="response" value=""/>
+							<i>Lung</i>
+						</label>
+						<label>
+							<input  type="radio" name="response" value=""/>
+							<i>Geneto Urinary</i>
+						</label>
+						<label>
+							<input  type="radio" name="response" value=""/>
+							<i>Cutaneous</i> 
+						</label>  
+						<label>
+							<input  type="radio" name="response" value=""/>
+							<i>Breast</i> 
+						</label>
+					</label>
+					<!-- LEVEL  4 -->
+					<label class="radioOptions lvl4 large-8 large-offset-1 medium-10 medium-offset-1 small-6">
+						<label>
+							<input type="radio" name="response" value=""/>
+							<i>Lung</i>
+						</label>
+						<label>
+							<input  type="radio" name="response" value=""/>
+							<i>Geneto Urinary</i>
+						</label>
+						<label>
+							<input  type="radio" name="response" value=""/>
+							<i>Cutaneous</i> 
+						</label>  
+						<label>
+							<input  type="radio" name="response" value=""/>
+							<i>Breast</i> 
+						</label>
+					</label>
+		
+					<div class="grid-x">
+						<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10 small-offset-1">
+							<a href="#" class="button button_findEligibleStudy">Find Eligible Study</a>
+						</div>
 					</div>
 				</div>
 			</section>

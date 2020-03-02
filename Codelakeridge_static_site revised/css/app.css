@@ -24,6 +24,10 @@ body {
 	height:76vh;
 	overflow: scroll;
 }
+.radioOptions{
+	display: block;
+	width: 100%;
+}
 .pageBody label{
 	display: inline-block;
 	margin-right: 5px;
