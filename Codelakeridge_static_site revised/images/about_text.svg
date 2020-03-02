@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 437.5 170.92">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 36px;
+        fill: #444a4d;
+        font-family: Helvetica-Bold, Helvetica;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        letter-spacing: -0.02em;
+      }
+
+      .cls-3 {
+        font-size: 91.19px;
+        fill: #25aae1;
+        font-family: STIXGeneral-Regular, STIXGeneral;
+      }
+
+      .cls-4 {
+        letter-spacing: -0.06em;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        fill: none;
+        stroke: #25aae1;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <title>about_text</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="page2">
+      <text class="cls-1" transform="translate(63.33 153.61)">CLINICA<tspan class="cls-2" x="145.99" y="0">L</tspan><tspan x="167.34" y="0" xml:space="preserve"> TRAILS</tspan></text>
+      <text class="cls-3" transform="translate(0 75.77)"><tspan class="cls-4">W</tspan><tspan x="80.61" y="0">elcome </tspan><tspan class="cls-5" x="366.74" y="0">t</tspan><tspan x="391.91" y="0">o</tspan></text>
+      <line class="cls-6" x1="59.5" y1="102.66" x2="371.5" y2="102.66"/>
+    </g>
+  </g>
+</svg>
