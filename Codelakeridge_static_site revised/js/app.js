@@ -286,9 +286,28 @@ $(".studyClass").change(function (e) {
         .attr({value: "default",
         selected: "selected"}).text("-- Select Condition --"));
 
+        
     if(selectedStudy[0].next!=null){
         $(option[1]).show();
     }
+    var selectName = $('select').attr('name');
+
+            // add a hidden element with the same name as the select
+            var hidden = $('<input type="hidden" name="'+selectName+'">');
+            hidden.val($('select').val());
+            hidden.insertAfter($('select'));
+
+            $("select option").unwrap().each(function() {
+                var btn = $('<div class="btn">'+$(this).text()+'</div>');
+                if($(this).is(':checked')) btn.addClass('on');
+                $(this).replaceWith(btn);
+            });
+
+            $(document).on('click', '.btn', function() {
+                $('.btn').removeClass('on');
+                $(this).addClass('on');
+                $('input[name="'+selectName+'"]').val($(this).text());
+            });
 });
 
 
@@ -361,7 +380,7 @@ $(".otherClass").change(function (e) {
             
     if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next==null){
         console.log(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex]);
-            debugger;
+            
             let resultName= selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.name;
             $(".resultName h2").html(resultName);
             if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.type == "open"){
@@ -412,15 +431,33 @@ $(".otherClass_level4").change(function (e) {
             if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result.type == "open"){
                 $(".resultName").addClass("greenHeader");
                 $(".resultDetails").addClass("greenDetails");
+                
+                $(".resultName").removeClass("orangeHeader");
+                $(".resultDetails").removeClass("orangeDetails");
+
+                $(".resultName").removeClass("greenHeader");
+                $(".resultDetails").removeClass("greenDetails");
             }
             else if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result.type == "closed"){
                 $(".resultName").addClass("orangeHeader");
                 $(".resultDetails").addClass("orangeDetails");
+
+                $(".resultName").removeClass("greyHeader");
+                $(".resultDetails").removeClass("greyDetails");
+
+                $(".resultName").removeClass("greenHeader");
+                $(".resultDetails").removeClass("greenDetails");
             }
             else 
             {
-            $(".resultName").addClass("greyHeader");
+                $(".resultName").addClass("greyHeader");
                 $(".resultDetails").addClass("greyDetails");
+
+                $(".resultName").removeClass("orangeHeader");
+                $(".resultDetails").removeClass("orangeDetails");
+
+                $(".resultName").removeClass("greenHeader");
+                $(".resultDetails").removeClass("greenDetails");
             }
             $('.mainPage').hide();
             $('.resultsPage').show();
