@@ -257,8 +257,12 @@ $(".button_findEligibleStudy").css({opacity:0.2});
     $(".condition").show();
 
     $('.conditions').click(function() {
-        console.log("conditions clicked");
-        content='';
+        buttonDeactivivate();
+        $(".radioOptions").show();
+        $(".lvl1,.lvl2,.lvl3").hide();
+        content=`<div class="large-8 medium-10 small-6">
+        <h2 class="researchStudy_title">Type of Cancer </h2>
+        </div>`;
         $(".lvl1").show();
         if ($(this).val() === '0') {
             Current=lung;
@@ -273,111 +277,151 @@ $(".button_findEligibleStudy").css({opacity:0.2});
         $(".lvl1").html(content);
         lvl1();
     });
-
     //LEVEL 1
     function lvl1(){
     $('.lvl1s').click(function() {
-        let currentCondition;
-        console.log("lvl1s clicked");
-        content='';
-        $(".lvl2").show();
-        if ($(this).val() === '0') {
-            currentCondition= lung[0];
-            currentCondition.next.forEach((element,i) => {
-                content+=`<label>
-                <input class="lvl2s" type="radio"  name="lvl2" value="${i}"/>
-                <i>${element.name}</i>
-            </label>`;
-            });
-        }
-        else if ($(this).val() === '1') {
-            currentCondition= lung[1];
-            currentCondition.next.forEach((element,i) => {
-                content+=`<label>
-                <input type="radio"  name="lvl2" value="${i}"/>
-                <i>${element.name}</i>
-            </label>`;
-            });
-        }
-        else if ($(this).val() === '2') {
-            currentCondition= lung[2];
-            currentCondition.next.forEach((element,i) => {
-                content+=`<label>
-                <input type="radio"  name="lvl2" value="${i}"/>
-                <i>${element.name}</i>
-            </label>`;
-            });
-        }
-        else if ($(this).val() === '3') {
-            currentCondition= lung[3];
-            currentCondition.next.forEach((element,i) => {
-                content+=`<label>
-                <input type="radio"  name="lvl2" value="${i}"/>
-                <i>${element.name}</i>
-            </label>`;
-            });
-        }
-        console.log(content);
-        $(".lvl2").html(content);
-        lvl2(currentCondition);
-    });
-
-    //LEVEL 2
-    function lvl2(currentCondition){
-        console.log(currentCondition)
-        $('.lvl2s').click(function() {
-            content='';
-            $(".lvl3").show();
+        buttonDeactivivate();
+        $(".lvl2,.lvl3").html("");
+        let currentCondition=lung;
+        if(currentCondition[$(this).val()].next !=  null )
+        {
+            $(".radioOptions").show();
+            $(".lvl1,.lvl2,.lvl3").hide();
+            console.log("lvl1s clicked");
+            content=`<div class="large-8 medium-10 small-6">
+            <h2 class="researchStudy_title">Specify : </h2>
+            </div>`;
+            $(".lvl2").show();
             if ($(this).val() === '0') {
-                 currentCondition= currentCondition.next[0].next
-                currentCondition.forEach((element,i) => {
+                currentCondition= lung[0];
+                currentCondition.next.forEach((element,i) => {
                     content+=`<label>
-                    <input class="lvl2s" type="radio"  name="lvl3" value="${i}"/>
+                    <input class="lvl2s" type="radio"  name="lvl2" value="${i}"/>
                     <i>${element.name}</i>
                 </label>`;
                 });
             }
             else if ($(this).val() === '1') {
-                currentCondition= currentCondition.next[1].next
-               currentCondition.forEach((element,i) => {
+                currentCondition= lung[1];
+                currentCondition.next.forEach((element,i) => {
                     content+=`<label>
-                    <input type="radio"  name="lvl3" value="${i}"/>
+                    <input class="lvl2s" type="radio"  name="lvl2" value="${i}"/>
                     <i>${element.name}</i>
                 </label>`;
                 });
             }
             else if ($(this).val() === '2') {
-                currentCondition= currentCondition.next[2].next
-               currentCondition.forEach((element,i) => {
+                currentCondition= lung[2];
+                currentCondition.next.forEach((element,i) => {
                     content+=`<label>
-                    <input type="radio"  name="lvl3" value="${i}"/>
+                    <input class="lvl2s" type="radio"  name="lvl2" value="${i}"/>
                     <i>${element.name}</i>
                 </label>`;
                 });
             }
             else if ($(this).val() === '3') {
-                currentCondition= currentCondition.next[3].next
-               currentCondition.forEach((element,i) => {
+                currentCondition= lung[3];
+                currentCondition.next.forEach((element,i) => {
                     content+=`<label>
-                    <input type="radio"  name="lvl3" value="${i}"/>
+                    <input class="lvl2s" type="radio"  name="lvl2" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>`;
+                });
+            }
+            $(".lvl2").html(content);
+            lvl2(currentCondition);
+        }
+    });
+}
+//LEVEL 2
+function lvl2(currentCondition){
+    buttonDeactivivate();
+    $(".radioOptions").show();
+    $(".lvl3").hide();
+    $('.lvl2s').click(function() {
+        let current = currentCondition;
+        $(".lvl3").html("");
+        console.log(current);
+        if(current.next[$(this).val()].next !=  null ){
+            content=`<div class="large-8 medium-10 small-6">
+                <h2 class="researchStudy_title">Line of therapy</h2>
+            </div>`;
+            $(".lvl3").show();
+            if ($(this).val() === '0') {
+                current = current.next[0].next;
+                current.forEach((element,i) => {
+                    content+=`<label>
+                    <input class="lvl3s" type="radio"  name="lvl3" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>`;
+                });
+            }
+            else if ($(this).val() === '1') {
+                current= current.next[1].next;
+                current.forEach((element,i) => {
+                    content+=`<label>
+                    <input class="lvl3s" type="radio"  name="lvl3" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>`;
+                });
+            }
+            else if ($(this).val() === '2') {
+                current= current.next[2].next;
+                current.forEach((element,i) => {
+                    content+=`<label>
+                    <input class="lvl3s" type="radio"  name="lvl3" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>`;
+                });
+            }
+            else if ($(this).val() === '3') {
+                current= current.next[3].next;
+                current.forEach((element,i) => {
+                    content+=`<label>
+                    <input class="lvl3s" type="radio"  name="lvl3" value="${i}"/>
                     <i>${element.name}</i>
                 </label>`;
                 });
             }
             console.log(content);
             $(".lvl3").html(content);
-            lvl3(currentCondition);
-        });
-    }
+            lvl3(current);
+        }
+        else{ 
 
-    //LEVEL 3
-    function lvl3(currentCondition){
-        console.log(currentCondition)
-        $('.lvl3s').click(function() {
-            content='';
+            buttonActivivate();
+            let result  =  current.next[$(this).val()].result;
+            if(result.type ==  "NE" )
+            {
+                $(".lvl3").html("");
+                loadResult(result.type,result.name,"LOrem","grey");
+            }
+            else if(result.type ==  "closed" )
+            {
+                loadResult(result.type,result.name,"LOrem","grey");
+                $(".lvl3").html("");
+            }
+            else if(result.type ==  "open" );
+            {
+                loadResult(result.type,result.name,"LOrem","grey");
+                $(".lvl3").html("");
+            }
+        }
+    });
+}
+//LEVEL 3
+function lvl3(currentCondition){
+        buttonDeactivivate();
+    console.log(currentCondition);
+    $('.lvl3s').click(function() {
+
+        if(currentCondition[$(this).val()].next !=  null ){
+            content=`<div class="large-8 medium-10 small-6">
+            <h2 class="researchStudy_title"></h2>
+            </div>`;
             $(".lvl4").show();
             if ($(this).val() === '0') {
-                 currentCondition= currentCondition.next[0].next
+                currentCondition= currentCondition.next[0].next;
                 currentCondition.forEach((element,i) => {
                     content+=`<label>
                     <input class="lvl2s" type="radio"  name="lvl4" value="${i}"/>
@@ -386,8 +430,8 @@ $(".button_findEligibleStudy").css({opacity:0.2});
                 });
             }
             else if ($(this).val() === '1') {
-                currentCondition= currentCondition.next[1].next
-               currentCondition.forEach((element,i) => {
+                currentCondition= currentCondition.next[1].next;
+            currentCondition.forEach((element,i) => {
                     content+=`<label>
                     <input type="radio"  name="lvl4" value="${i}"/>
                     <i>${element.name}</i>
@@ -395,8 +439,8 @@ $(".button_findEligibleStudy").css({opacity:0.2});
                 });
             }
             else if ($(this).val() === '2') {
-                currentCondition= currentCondition.next[2].next
-               currentCondition.forEach((element,i) => {
+                currentCondition= currentCondition.next[2].next;
+            currentCondition.forEach((element,i) => {
                     content+=`<label>
                     <input type="radio"  name="lvl4" value="${i}"/>
                     <i>${element.name}</i>
@@ -404,8 +448,8 @@ $(".button_findEligibleStudy").css({opacity:0.2});
                 });
             }
             else if ($(this).val() === '3') {
-                currentCondition= currentCondition.next[3].next
-               currentCondition.forEach((element,i) => {
+                currentCondition= currentCondition.next[3].next;
+            currentCondition.forEach((element,i) => {
                     content+=`<label>
                     <input type="radio"  name="lvl4" value="${i}"/>
                     <i>${element.name}</i>
@@ -414,9 +458,45 @@ $(".button_findEligibleStudy").css({opacity:0.2});
             }
             console.log(content);
             //$(".lvl4").html(content);
-        });
-            
-    }
+        }
+        else{
+            buttonActivivate();
+            let result= currentCondition[$(this).val()].result;
+            if(currentCondition[$(this).val()].result.type ==  "NE" )
+            {
+                loadResult(result.type,result.name,"LOrem","grey")
+            }
+            else if(currentCondition[$(this).val()].result.type ==  "closed" )
+            {
+                loadResult(result.type,result.name,"LOrem","orange")
+            }
+            else if(currentCondition[$(this).val()].result.type ==  "open" )
+            {
+                loadResult(result.type,result.name,"LOrem","green")
+            }
+        }
+    });
+        
+}
+function buttonActivivate(){
+$(".button_findEligibleStudy").css({opacity:1});
+}
+function buttonDeactivivate(){
+$(".button_findEligibleStudy").css({opacity:0.2});
+}
+function loadResult(status,head,details,color){
+
+    $(".resultName").removeClass("greenHeader orangeHeader greyHeader");
+    $(".resultDetails").removeClass("greenDetails orangeDetails greyDetails");
+
+    $(".mainPage").hide();
+    $(".resultsPage").show();
+
+    $(".resultName").html(head);
+    $(".resultDetails").html(details);
+
+    $(".resultName").addClass(color+"Header");
+    $(".resultDetails").addClass(color+"Details");
 }
 //== Test page ENDS  ==//
 });

@@ -26,7 +26,16 @@ body {
 }
 .radioOptions{
 	display: block;
+	padding: 15px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
 	width: 100%;
+	margin-bottom: 10px;;
+}
+.radioOptions label{
+	width: 200px;
+}
+.radioOptions i{
+	font-size: 130%;
 }
 .pageBody label{
 	display: inline-block;
