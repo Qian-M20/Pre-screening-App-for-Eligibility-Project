@@ -342,6 +342,13 @@ h3 {
 	border-radius: 10px;
 
 }
+.result .basketResultName{
+	font-weight: bold;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border-radius: 10px;
+
+}
 .greenHeader{
 	background-color:#b3d235 !important
 }
@@ -362,6 +369,12 @@ h3 {
 }
 
 .result .resultDetails{
+
+	padding: 30px 20px;
+	box-sizing: border-box;
+
+}
+.result .basketResultDetails{
 
 	padding: 30px 20px;
 	box-sizing: border-box;

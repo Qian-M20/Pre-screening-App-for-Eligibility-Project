@@ -64,7 +64,7 @@ let lung=[{
 
 //variable to store basket stydy
 let basket={
-
+    'eligible': false
 };
 
 $(document).foundation();
@@ -248,10 +248,9 @@ $(".button_findEligibleStudy").css({opacity:0.2});
 //// Test page STARTS  ////
 ///////////////////////////
 
-    $(".page").hide();
-    $(".mainPage").show();
 
     $(".radioOptions").hide();
+    $(".basket").hide();
     //Condition
     let Current;
     $(".condition").show();
@@ -260,6 +259,7 @@ $(".button_findEligibleStudy").css({opacity:0.2});
         buttonDeactivivate();
         $(".radioOptions").show();
         $(".lvl1,.lvl2,.lvl3").hide();
+        $(".basket").hide();
         content=`<div class="large-8 medium-10 small-6">
         <h2 class="researchStudy_title">Type of Cancer </h2>
         </div>`;
@@ -287,6 +287,7 @@ $(".button_findEligibleStudy").css({opacity:0.2});
         {
             $(".radioOptions").show();
             $(".lvl1,.lvl2,.lvl3").hide();
+            $(".basket").hide();
             console.log("lvl1s clicked");
             content=`<div class="large-8 medium-10 small-6">
             <h2 class="researchStudy_title">Specify : </h2>
@@ -338,6 +339,7 @@ function lvl2(currentCondition){
     buttonDeactivivate();
     $(".radioOptions").show();
     $(".lvl3").hide();
+    $(".basket").hide();
     $('.lvl2s').click(function() {
         let current = currentCondition;
         $(".lvl3").html("");
@@ -390,22 +392,38 @@ function lvl2(currentCondition){
         else{ 
 
             buttonActivivate();
+            $(".basket").show();
+            if($(".basketStudy").prop("checked") == false){
+                basket.eligible=false;
+            }
             let result  =  current.next[$(this).val()].result;
-            if(result.type ==  "NE" )
-            {
-                $(".lvl3").html("");
-                loadResult(result.type,result.name,"LOrem","grey");
-            }
-            else if(result.type ==  "closed" )
-            {
-                loadResult(result.type,result.name,"LOrem","grey");
-                $(".lvl3").html("");
-            }
-            else if(result.type ==  "open" );
-            {
-                loadResult(result.type,result.name,"LOrem","grey");
-                $(".lvl3").html("");
-            }
+            $(".button_findEligibleStudy").click(function (e) { 
+                e.preventDefault();
+                if($(".basketStudy").prop("checked") == true){
+                    basket.eligible=true;
+                    console.log(basket.eligible);
+                }
+                else{
+                    basket.eligible=false;
+                    console.log(basket.eligible);
+                }
+                if(result.type ==  "NE" )
+                {
+                    loadResult(result.type,result.name,"Not Eligible for any studies","grey");
+                    $(".lvl3").html("");
+                }
+                else if(result.type ==  "closed" )
+                {
+                    loadResult(result.type,result.name,"Studies are closed","grey");
+                    $(".lvl3").html("");
+                }
+                else if(result.type ==  "open" );
+                {
+                    loadResult(result.type,result.name,"Eligible for "+result.name,"grey");
+                    $(".lvl3").html("");
+                }
+                
+            });
         }
     });
 }
@@ -461,19 +479,33 @@ function lvl3(currentCondition){
         }
         else{
             buttonActivivate();
+            $(".basket").show();
             let result= currentCondition[$(this).val()].result;
-            if(currentCondition[$(this).val()].result.type ==  "NE" )
-            {
-                loadResult(result.type,result.name,"LOrem","grey")
-            }
-            else if(currentCondition[$(this).val()].result.type ==  "closed" )
-            {
-                loadResult(result.type,result.name,"LOrem","orange")
-            }
-            else if(currentCondition[$(this).val()].result.type ==  "open" )
-            {
-                loadResult(result.type,result.name,"LOrem","green")
-            }
+            $(".button_findEligibleStudy").click(function (e) { 
+                e.preventDefault();
+
+                if($(".basketStudy").prop("checked") == true){
+                    basket.eligible=true;
+                    console.log(basket.eligible);
+                }
+                else{
+                    basket.eligible=false;
+                    console.log(basket.eligible);
+                }
+
+                if(result.type ==  "NE" )
+                {
+                    loadResult(result.type,result.name,"Not Eligible for any studies","grey")
+                }
+                else if(result.type ==  "closed" )
+                {
+                    loadResult(result.type,result.name,"Studies are closed","orange")
+                }
+                else if(result.type ==  "open" )
+                {
+                    loadResult(result.type,result.name,"Eligible for "+result.name,"green")
+                }
+            });
         }
     });
         
@@ -497,6 +529,29 @@ function loadResult(status,head,details,color){
 
     $(".resultName").addClass(color+"Header");
     $(".resultDetails").addClass(color+"Details");
+
+    if(basket.eligible  == true){
+
+        $(".basketResultDetails").html("Eligible for Basket Studies");
+
+        $(".basketResultName").removeClass("greyHeader");
+        $(".basketResultDetails").removeClass("greyDetails");
+
+        $(".basketResultName").addClass("greenHeader");
+        $(".basketResultDetails").addClass("greenDetails");
+        console.log("green");
+    }
+    else{
+
+        $(".basketResultDetails").html("Not Eligible for Basket Studies");
+
+        $(".basketResultName").removeClass("greenHeader");
+        $(".basketResultDetails").removeClass("greenDetails");
+
+        $(".basketResultName").addClass("greyHeader");
+        $(".basketResultDetails").addClass("greyDetails");
+        console.log("grey");
+    }
 }
 //== Test page ENDS  ==//
 });
