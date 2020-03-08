@@ -1,340 +1,575 @@
-
 /////// flowchart variables ///////
 // variable to store Lung flowchart
-    let lung=[{
-        "name":"Small Cell",
+let lung=[{
+    "name":"Small Cell",
+    "next":[{
+        "name":"Limited",
+        "next":null,
+        'result': {
+            "name":"Not Eligible", //eligible
+            "type": "NE"
+        }
+    },
+    {
+        "name": "Extensive",
         "next":[{
-            "name":"Limited",
+            "name":"Maintenance",
+            "next":null,
+            "result":{
+                "name":"(ABBVIE M16-298 / MERU RN: Marianna)", //eligible
+                "type": "closed"
+            }
+        }]
+    }]
+},
+{
+    "name": "Non-Small Cell",
+    "next":[{
+        "name":"Resectable",
+        "next":[{
+            "name":"Adjuvant Therapy",
+            'next':null,
+            "result":{
+                "name":"(CCTG0 BR.13 RN: Marianna)", //eligible
+                "type": "open"
+            }
+        }]
+    },
+    {
+        "name": "Unresectable",
+        "next":[{
+            "name":"First Line",
+            "next":null,
+            "result":{
+                "name":"(ROCHE) BO2914 / BFAST) RN: Sam)", //eligible
+                "type": "open"
+            }
+        },{
+            "name":"Second Line",
+            'next':null,
+            "result":{
+                "name":"BMS CA209-907", //eligible
+                "type": "closed"
+            }
+        },{
+            "name":"Third Line",
             "next":null,
             'result': {
                 "name":"Not Eligible", //eligible
                 "type": "NE"
             }
-        },
-        {
-            "name": "Extencive",
-            "next":[{
-                "name":"Maintenance",
-                "next":null,
-                "result":{
-                    "name":"(ABBVIE M16-298 / MERU RN: Marianna)", //eligible
-                    "type": "closed"
-                }
-            }]
         }]
-    },
-    {
-        "name": "Non-Small Cell",
-        "next":[{
-            "name":"Resectable",
-            "next":[{
-                "name":"Adjuvant Therapy",
-                'next':null,
-                "result":{
-                    "name":"(CCTG0 BR.13 RN: Marianna)", //eligible
-                    "type": "open"
-                }
-            }]
-        },
-        {
-            "name": "Unresectable",
-            "next":[{
-                "name":"First Line",
-                "next":null,
-                "result":{
-                    "name":"(ROCHE) BO2914 / BFAST) RN: Sam)", //eligible
-                    "type": "open"
-                }
-            },{
-                "name":"Second Line",
-                'next':null,
-                "result":{
-                    "name":"BMS CA209-907", //eligible
-                    "type": "closed"
-                }
-            },{
-                "name":"Third Line",
-                "next":null,
-                'result': {
-                    "name":"Not Eligible", //eligible
-                    "type": "NE"
-                }
-            }]
-        }]
-    }];
+    }]
+}];
 
 //variable to store basket stydy
 let basket={
-
+    'eligible': false
 };
 
 $(document).foundation();
 
 
 $(document).ready(function () {
-    //set up hamburger menu to reveal main menu
-    $(".hamburger").click(function(){
-        if ($(this).attr("data-click-state")=="1")
-        {
-            $(this).attr("data-click-state", 0);
-            
-            $(this).attr("src","images/hamburger2close.gif");
-            
-            TweenMax.to(".pageBody", 1, { 
-                opacity:0.2,
-                ease: Power2.easeOut
-            });
-            TweenMax.to("#menu", 1, { 
-                display:"flex",
-                opacity:1,
-                x:"0%",
-                ease: Sine.easeInOut
-            });
-        }else{
-            $(this).attr("data-click-state", 1);
-            
-            $(this).attr("src","images/close2hamburger.gif");
+//set up hamburger menu to reveal main menu
+const MENU_SCREEN = document.querySelector('#hamburgerMenu');
+const CLOSE_BUTTON = document.querySelector('#closeBtn');
+const MENU_BUTTON1 = document.querySelector('#hamburger1');
+const MENU_BUTTON2 = document.querySelector('#hamburger2');
+const MENU_BUTTON3 = document.querySelector('#hamburger3');
 
-            TweenMax.to(".pageBody", 1, { 
-                opacity:1,
-                ease: Power2.easeIn
-            });
-            TweenMax.to("#menu", 1, { 
-                display:"none",
-                opacity:0,
-                x:"100%",
-                ease: Sine.easeInOut
-            });
-        }
+// links variables
+let about =  document.querySelector('#about');
+let findTrials =  document.querySelector('#findTrials');
+let contact =  document.querySelector('#contact');
+
+//function open the hamburger menu screen
+function openMenu(){
+    TweenMax.to(".page",1,{
+        opacity:0.4
+    })
+    TweenMax.fromTo(MENU_SCREEN,1,{
+        display: "block",
+        opacity:0,
+        x:350
+    },{
+        x:0,
+        opacity:1,
+        ease:Sine.easeOut
+    })
+}
+//on click menu button on landing screen
+MENU_BUTTON1.addEventListener('click', function(){
+    openMenu();
+});
+//on click menu button on options/main screen
+MENU_BUTTON2.addEventListener('click', function(){
+    openMenu();
+});
+//on click menu button on result screen
+MENU_BUTTON3.addEventListener('click', function(){
+    openMenu();
+});
+//function close the menu screen
+CLOSE_BUTTON.addEventListener('click', function(){
+    TweenMax.fromTo(MENU_SCREEN,1,{
+        x:0,
+        opacity:1,
+    },{
+        display: "none",
+        opacity:0,
+        x:350,
+        ease:Sine.easeIn
+    })
+    TweenMax.to(".page",1,{
+        opacity:1
+    })
+});
+// menu links
+//function back to to landing screen or options screen
+function backToLanding(){
+    TweenMax.fromTo('.page',0.5,{
+        opacity:0.2
+    },{
+        opacity:1,
+        ease: Sine.easeOut
     });
+    TweenMax.to('#hamburgerMenu',1,{
+        opacity:0,
+        x:350,
+        display:'none'
+    });
+    $('.landingPage').show();
+}
+function backToOptionsScreen(){
+    TweenMax.fromTo('.page',0.5,{
+        opacity:0.2
+    },{
+        opacity:1,
+        ease: Sine.easeOut
+    });
+    TweenMax.to('#hamburgerMenu',1,{
+        opacity:0,
+        x:350,
+        display:'none'
+    });
+    $('.landingPage').hide();
+    $('.mainPage').show();
+}
+function backToContact(){
+    TweenMax.fromTo('.page',0.5,{
+        opacity:0.2
+    },{
+        opacity:1,
+        ease: Sine.easeOut
+    });
+    TweenMax.to('#hamburgerMenu',1,{
+        opacity:0,
+        x:350,
+        display:'none'
+    });
+    $('.landingPage, .mainPage').hide();
+    $('.resultsPage').show();
+}
+//on click go back to landing screen
+about.addEventListener('click',function(){
+    backToLanding();
+})
+//on click go back to options/main screen
+findTrials.addEventListener('click',function(){
+    backToOptionsScreen();
+})
+//on click go back to result page where it has contact information
+//*NOTE: I also think this screen could be made as a pop up screen where it only show the contact info, not include the result but we will leave it like this for now.
+contact.addEventListener('click',function(){
+    backToContact();
+})
 
-    //setup back arrow button to go to the previous page
-    $(".arrowClass").click(function(){
+//hide all main sections
+$('main').hide();
+// splash screen appears
+$('.splashPage').show();
+// splash screen disappers after 1s
+TweenMax.to(".splashPage",1,{
+    delay:1,
+    x: 1500,
+    display: "none",
+    ease: Power1.easeOut,
+    onComplete:function()
+    {	
+        // landing page screen appears
         $('.landingPage').show();
-    });
+        TweenMax.from(".landingPage",1,{
+            delay:0,
+            opacity: 0
+        });
+    }
+});
 
-    $(".resultsPage .arrowClass").click(function(){
-        $('.mainPage').show();
-    });
+//setup back arrow button to go to the previous page
+$("#arrowDivLand").click(function(){
+    $('.landingPage').show();
+    $('.mainPage').hide();
+    $('.resultsPage').hide();
+});
 
-    //hide all main sections
-    $('main').hide();
-    // splash screen appears
-    $('.splashPage').show();
-    // splash screen disappers after 1s
+//setup back arrow button to go to the previous page
+$("#arrowDivResults").click(function(){
+    $('.mainPage').show();
+    $('.resultsPage').hide();
+});
+
+//function to show main page when start research is clicked
+$(".button_startResearch").click(function (e) { 
+    e.preventDefault();
+    $('.landingPage').hide();
+    $('.mainPage').show();
     TweenMax.to(".splashPage",1,{
         delay:1,
         x: 1500,
         display: "none",
         ease: Power1.easeOut,
-        onComplete:function()
-		{	
-			// landing page screen appears
-            $('.landingPage').show();
-            TweenMax.from(".landingPage",1,{
-                delay:0,
-                opacity: 0
-            });
-		}
+        // onComplete:function()
+		// {	
+		// 	// landing page screen appears
+        //     $('.landingPage').show();
+        //     TweenMax.from(".landingPage",1,{
+        //         delay:0,
+        //         opacity: 0
+        //     });
+		// }
     });
-
     
-    
-    //function to show main page when start research is clicked
-    $(".button_startResearch").click(function (e) { 
-        e.preventDefault();
-        $('.landingPage').hide();
-        $('.mainPage').show();
-        TweenMax.to(".splashPage",1,{
-            delay:1,
-            x: 1500,
-            display: "none",
-            ease: Power1.easeOut,
-        });
-        
-    });
-
-    $(".button_findEligibleStudy").css({opacity:0.2});
-
-    ///////////////////////////
-    //// Test page STARTS  ////
-    ///////////////////////////
-    
-    //option div contains select and corresponding label
-    let option = document.getElementsByClassName("options");
-    //initialy hiding all the droplown list
-    $(option).hide();
-    //STUDY selection
-    let selectedStudyValue;// to store the value of selected study from the study options
-    let selectedStudy;// to store variable correspoinding type of study selected
-
-    //on STUDY dropdown change 
-
-    //showing the first dropdown list : Type of study
-    $(option[0]).show();
-    //function to show next level [conditions list] options when type of stydy is selected
-    $(".studyClass").change(function (e) {
-        e.preventDefault();
-         
-        $(option[1]).hide();
-        $(option[2]).hide();
-        $(option[3]).hide();
-        selectedStudyValue= $(".studyClass").val();//getting the value of selected option and assign to selectedStudyValue
-
-        var $el = $(".conditionClass");
-        $el.empty(); // remove old options
-        switch(selectedStudyValue) {
-            case "lung":
-                selectedStudy= lung;
-                break;
-            default:
-              // code block
-            }
-        $.each(selectedStudy, function(key,value) {
-            $el.append($("<option></option>")
-                .attr("value", key).text(value.name));
-        });
-
-        $el.append($("<option></option>")
-            .attr({value: "default",
-            selected: "selected"}).text("-- Select Condition --"));
-
-        if(selectedStudy[0].next!=null){
-            $(option[1]).show();
-        }
-    });
-
-
-    //on  CONDITION dropdown change 
-    let selectedConditionIndex;
-
-    //function to show next level [other term options] options when type of condition is selected
-    $(".conditionClass").change(function (e) { 
-        e.preventDefault();
-
-        $(option[2]).hide();
-        $(option[3]).hide();
-
-        selectedStudyValue= $(".conditionClass").val();
-        selectedConditionIndex= $(".conditionClass").prop('selectedIndex');
-
-        var $el = $(".otherClass");
-        $el.empty(); // remove old options
-        $.each(selectedStudy[selectedConditionIndex].next, function(key,value) {
-            $el.append($("<option></option>")
-            .attr("value", value).text(value.name));
-        });
-
-        
-        $el.append($("<option></option>")
-            .attr({value: "default",
-            selected: "selected"}).text("-- Select Condition --"));
-
-        if(selectedStudy[selectedConditionIndex].next!=null){
-            $(option[2]).show();
-        }
-        if(selectedStudy[selectedConditionIndex]==null){
-            $(".button_findEligibleStudy").css({opacity:1});
-        }
-    });
-
-
-    //on  OTHER TERM dropdown change 
-    let selectedOtherClassIndex;
-    $(".otherClass").change(function (e) { 
-
-        e.preventDefault();
-        $(option[3]).hide();
-
-        selectedOtherClassIndex= $(".otherClass").prop('selectedIndex');
-        console.log(selectedOtherClassIndex);
-
-
-        var $el = $(".otherClass_level4");
-        $el.empty(); // remove old options
-                                                        console.log(lung[0].next);
-        $.each(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next, function(key,value) {
-        $el.append($("<option></option>")
-            .attr("value", value).text(value.name));
-        });
-        $el.append($("<option></option>")
-            .attr({value: "default",
-            selected: "selected"}).text("-- Select Condition --"));
-
-        if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next!=null){
-            $(option[3]).show();
-        }
-        if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next){
-            $(".button_findEligibleStudy").css({opacity:0.5});
-        }
-        if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next==null){
-            $(".button_findEligibleStudy").css({opacity:1});
-            $(".button_findEligibleStudy").click(function (e) { 
-                e.preventDefault();
-                resultName= selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.name;
-                $(".resultName h2").html(resultName);
-                console.log(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result);
-                if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.type == "open"){
-                    $(".resultName").addClass("greenHeader");
-                    $(".resultDetails").addClass("greenDetails");
-                }
-                else if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].result.type == "closed"){
-                    $(".resultName").addClass("orangeHeader");
-                    $(".resultDetails").addClass("orangeDetails");
-                }
-                $('.mainPage').hide();
-                $('.resultsPage').show();
-                TweenMax.to(".mainPage",1,{
-                    delay:1,
-                    x: 1500,
-                    display: "none",
-                    ease: Power1.easeOut,
-                });
-                
-            });
-        }
-    });
-
-
-    let selectedlevel4Index;
-
-    $(".otherClass_level4").click(function (e) { 
-        $(option[4]).hide();
-
-        selectedlevel4Index= $(".otherClass_level4").prop('selectedIndex');
-        console.log(selectedlevel4Index);
-
-        if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].next==null){
-            $(".button_findEligibleStudy").css({opacity:1});
-
-            $(".button_findEligibleStudy").click(function (e) { 
-                e.preventDefault();
-                resultName= selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result.name;
-                $(".resultName h2").html(resultName);
-                console.log(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result);
-                if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result.type == "open"){
-                    $(".resultName").addClass("greenHeader");
-                    $(".resultDetails").addClass("greenDetails");
-                }
-                else if(selectedStudy[selectedConditionIndex].next[selectedOtherClassIndex].next[selectedlevel4Index].result.type == "closed"){
-                    $(".resultName").addClass("orangeHeader");
-                    $(".resultDetails").addClass("orangeDetails");
-                }
-                $('.mainPage').hide();
-                $('.resultsPage').show();
-                TweenMax.to(".mainPage",1,{
-                    delay:1,
-                    x: 1500,
-                    display: "none",
-                    ease: Power1.easeOut,
-                });
-                
-            });
-        }
-    });
-
-    //== Test page ENDS  ==//
 });
-    
-  
 
+$(".button_findEligibleStudy").css({opacity:0.2});
+
+///////////////////////////
+//// Test page STARTS  ////
+///////////////////////////
+
+
+    $(".radioOptions").hide();
+    $(".basket").hide();
+    //Condition
+    let Current;
+    $(".condition").show();
+
+    $('.conditions').click(function() {
+        buttonDeactivivate();
+        $(".radioOptions").show();
+        $(".lvl1,.lvl2,.lvl3").hide();
+        $(".basket").hide();
+        content=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+        <h2 class="researchStudy_title">Type of Cancer </h2>
+        </div>`;
+        $(".lvl1").show();
+        if ($(this).val() === '0') {
+            Current=lung;
+            lung.forEach((element,i) => {
+                content+=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+			<label>
+                <input class="lvl1s" type="radio" name="lvl1" value="${i}"/>
+                <i>${element.name}</i>
+            </label>
+			</div>`;
+            });
+        } else if ($(this).val() === '1') {
+        } 
+        $(".lvl1").html(content);
+        lvl1();
+    });
+    //LEVEL 1
+    function lvl1(){
+    $('.lvl1s').click(function() {
+        buttonDeactivivate();
+        $(".lvl2,.lvl3").html("");
+        let currentCondition=lung;
+        if(currentCondition[$(this).val()].next !=  null )
+        {
+            $(".radioOptions").show();
+            $(".lvl1,.lvl2,.lvl3").hide();
+            $(".basket").hide();
+            console.log("lvl1s clicked");
+            content=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+            <h2 class="researchStudy_title">Specify : </h2>
+            </div>`;
+            $(".lvl2").show();
+            if ($(this).val() === '0') {
+                currentCondition= lung[0];
+                currentCondition.next.forEach((element,i) => {
+                    content+=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+				<label>
+                    <input class="lvl2s" type="radio"  name="lvl2" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>
+				</div>`;
+                });
+            }
+            else if ($(this).val() === '1') {
+                currentCondition= lung[1];
+                currentCondition.next.forEach((element,i) => {
+                    content+=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+				<label>
+                    <input class="lvl2s" type="radio"  name="lvl2" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>
+				</div>`;
+                });
+            }
+            else if ($(this).val() === '2') {
+                currentCondition= lung[2];
+                currentCondition.next.forEach((element,i) => {
+                    content+=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+				<label>
+                    <input class="lvl2s" type="radio"  name="lvl2" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>
+				</div>`;
+                });
+            }
+            else if ($(this).val() === '3') {
+                currentCondition= lung[3];
+                currentCondition.next.forEach((element,i) => {
+                    content+=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+				<label>
+                    <input class="lvl2s" type="radio"  name="lvl2" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>
+				</div>`;
+                });
+            }
+            $(".lvl2").html(content);
+            lvl2(currentCondition);
+        }
+    });
+}
+//LEVEL 2
+function lvl2(currentCondition){
+    buttonDeactivivate();
+    $(".radioOptions").show();
+    $(".lvl3").hide();
+    $(".basket").hide();
+    $('.lvl2s').click(function() {
+        let current = currentCondition;
+        $(".lvl3").html("");
+        console.log(current);
+        if(current.next[$(this).val()].next !=  null ){
+            content=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+                <h2 class="researchStudy_title">Line of therapy</h2>
+            </div>`;
+            $(".lvl3").show();
+            if ($(this).val() === '0') {
+                current = current.next[0].next;
+                current.forEach((element,i) => {
+                    content+=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+				<label>
+                    <input class="lvl3s" type="radio"  name="lvl3" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>
+				</div>`;
+                });
+            }
+            else if ($(this).val() === '1') {
+                current= current.next[1].next;
+                current.forEach((element,i) => {
+                    content+=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+				<label>
+                    <input class="lvl3s" type="radio"  name="lvl3" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>
+				</div>`;
+                });
+            }
+            else if ($(this).val() === '2') {
+                current= current.next[2].next;
+                current.forEach((element,i) => {
+                    content+=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+				<label>
+                    <input class="lvl3s" type="radio"  name="lvl3" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>
+				</div>`;
+                });
+            }
+            else if ($(this).val() === '3') {
+                current= current.next[3].next;
+                current.forEach((element,i) => {
+                    content+=`<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+				<label>
+                    <input class="lvl3s" type="radio"  name="lvl3" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>
+				</div>`;
+                });
+            }
+            console.log(content);
+            $(".lvl3").html(content);
+            lvl3(current);
+        }
+        else{ 
+
+            buttonActivivate();
+            $(".basket").show();
+            if($(".basketStudy").prop("checked") == false){
+                basket.eligible=false;
+            }
+            let result  =  current.next[$(this).val()].result;
+            $(".button_findEligibleStudy").click(function (e) { 
+                e.preventDefault();
+                if($(".basketStudy").prop("checked") == true){
+                    basket.eligible=true;
+                    console.log(basket.eligible);
+                }
+                else{
+                    basket.eligible=false;
+                    console.log(basket.eligible);
+                }
+                if(result.type ==  "NE" )
+                {
+                    loadResult(result.type,result.name,"Not Eligible for any studies","grey");
+                    $(".lvl3").html("");
+                }
+                else if(result.type ==  "closed" )
+                {
+                    loadResult(result.type,result.name,"Studies are closed","grey");
+                    $(".lvl3").html("");
+                }
+                else if(result.type ==  "open" );
+                {
+                    loadResult(result.type,result.name,"Eligible for "+result.name,"grey");
+                    $(".lvl3").html("");
+                }
+                
+            });
+        }
+    });
+}
+//LEVEL 3
+function lvl3(currentCondition){
+        buttonDeactivivate();
+    console.log(currentCondition);
+    $('.lvl3s').click(function() {
+
+        if(currentCondition[$(this).val()].next !=  null ){
+            content=`<div class="large-8 medium-10 small-6">
+            <h2 class="researchStudy_title"></h2>
+            </div>`;
+            $(".lvl4").show();
+            if ($(this).val() === '0') {
+                currentCondition= currentCondition.next[0].next;
+                currentCondition.forEach((element,i) => {
+                    content+=`<label>
+                    <input class="lvl2s" type="radio"  name="lvl4" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>`;
+                });
+            }
+            else if ($(this).val() === '1') {
+                currentCondition= currentCondition.next[1].next;
+            currentCondition.forEach((element,i) => {
+                    content+=`<label>
+                    <input type="radio"  name="lvl4" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>`;
+                });
+            }
+            else if ($(this).val() === '2') {
+                currentCondition= currentCondition.next[2].next;
+            currentCondition.forEach((element,i) => {
+                    content+=`<label>
+                    <input type="radio"  name="lvl4" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>`;
+                });
+            }
+            else if ($(this).val() === '3') {
+                currentCondition= currentCondition.next[3].next;
+            currentCondition.forEach((element,i) => {
+                    content+=`<label>
+                    <input type="radio"  name="lvl4" value="${i}"/>
+                    <i>${element.name}</i>
+                </label>`;
+                });
+            }
+            console.log(content);
+            //$(".lvl4").html(content);
+        }
+        else{
+            buttonActivivate();
+            $(".basket").show();
+            let result= currentCondition[$(this).val()].result;
+            $(".button_findEligibleStudy").click(function (e) { 
+                e.preventDefault();
+
+                if($(".basketStudy").prop("checked") == true){
+                    basket.eligible=true;
+                    console.log(basket.eligible);
+                }
+                else{
+                    basket.eligible=false;
+                    console.log(basket.eligible);
+                }
+
+                if(result.type ==  "NE" )
+                {
+                    loadResult(result.type,result.name,"Not Eligible for any studies","grey")
+                }
+                else if(result.type ==  "closed" )
+                {
+                    loadResult(result.type,result.name,"Studies are closed","orange")
+                }
+                else if(result.type ==  "open" )
+                {
+                    loadResult(result.type,result.name,"Eligible for "+result.name,"green")
+                }
+            });
+        }
+    });
+        
+}
+function buttonActivivate(){
+$(".button_findEligibleStudy").css({opacity:1});
+}
+function buttonDeactivivate(){
+$(".button_findEligibleStudy").css({opacity:0.2});
+}
+function loadResult(status,head,details,color){
+
+    $(".resultName").removeClass("greenHeader orangeHeader greyHeader");
+    $(".resultDetails").removeClass("greenDetails orangeDetails greyDetails");
+
+    $(".mainPage").hide();
+    $(".resultsPage").show();
+
+    $(".resultName").html(head);
+    $(".resultDetails").html(details);
+
+    $(".resultName").addClass(color+"Header");
+    $(".resultDetails").addClass(color+"Details");
+
+    if(basket.eligible  == true){
+
+        $(".basketResultDetails").html("Eligible for Basket Studies");
+
+        $(".basketResultName").removeClass("greyHeader");
+        $(".basketResultDetails").removeClass("greyDetails");
+
+        $(".basketResultName").addClass("greenHeader");
+        $(".basketResultDetails").addClass("greenDetails");
+        console.log("green");
+    }
+    else{
+
+        $(".basketResultDetails").html("Not Eligible for Basket Studies");
+
+        $(".basketResultName").removeClass("greenHeader");
+        $(".basketResultDetails").removeClass("greenDetails");
+
+        $(".basketResultName").addClass("greyHeader");
+        $(".basketResultDetails").addClass("greyDetails");
+        console.log("grey");
+    }
+}
+//== Test page ENDS  ==//
+});

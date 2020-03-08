@@ -24,7 +24,19 @@
 			</div>
 		</div>
 	</main>
-	
+
+
+	<!-- Hamburger Menu Screen-->
+	<div class="grid-x" id="hamburgerMenu">
+		<div id="closeBtn">
+			<img src="images/hamburger2close.gif" alt="close button">
+		</div>
+		<div id="menu" class="large-3 medium-4 small-6">
+			<a id="about" href="#">About</a>
+			<a id="findTrials" href="#">Find Trials</a>
+			<a id="contact" href="#">Contact</a>
+		</div>
+	</div>
 	<!-- Landing Page -->
 	<main class="landingPage page">
 		<!-- header -->
@@ -33,13 +45,13 @@
 				<!-- <br> -->
 				<div class="grid-x headerBar">
 					<div class="large-1 medium-1 small-1 backBtn">
-						<img class="arrowClass" src=images/back.png>
+						<img id="arrowDivLand" class="arrowClass" src=images/back.png>
 					</div>
 					<div class="large-10 medium-10 small-10 headerLogo">
 						<img src="images/lakeridge-logo.png" class="logoclass">
 					</div>
 					<div class="large-1 medium-1 small-1 burgerMenu">
-						<img class="hamburger" data-click-state="1" src="images/hamburger.png"alt="Menu" />
+						<img id="hamburger1" data-click-state="1" src="images/hamburger.png" alt="Menu" />
 					</div>
 				</div>
 			</div>
@@ -48,7 +60,7 @@
 		<div class="grid-container grid-padding-y pageBody landing_page" id="bodyPage">
 			<div class="grid-x">
 				<div class="large-4 medium-4 small-12 cell">
-						<img src="images/landing_page_logo.png" alt="clinical Trials image" />
+					<img src="images/landing_page_logo.png" alt="clinical Trials image" />
 				</div>
 				<div class="large-8 medium-8 small-12 cell info">
 					<h1 class="clinical_trials_title">CLINICAL TRIALS</h1>
@@ -89,94 +101,105 @@
 				<!-- <br> -->
 				<div class="grid-x headerBar">
 					<div class="large-1 medium-1 small-1 backBtn">
-						<img class="arrowClass" src=images/back.png>
+						<img id="arrowDivLand" class="arrowClass" src=images/back.png>
 					</div>
 					<div class="large-10 medium-10 small-10 headerLogo">
 						<img src="images/lakeridge-logo.png" class="logoclass">
 					</div>
 					<div class="large-1 medium-1 small-1 burgerMenu">
-						<img class="hamburger" data-click-state="1" src="images/hamburger.png"alt="Menu" />
+						<img id="hamburger2" data-click-state="1" src="images/hamburger.png" alt="Menu" />
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Hamburger Menu Screen-->
-		<main class="grid-x">
-			<div id="menu" class="large-3 medium-4 small-6">
-				<a href="#">About</a>
-				<a href="#">Find Trials</a>
-				<a href="#">Contact</a>
-			</div>
-		</main>
+
 		<!-- MAIN PAGE body -->
-		<section class="pageBody grid-container"><div class="grid-x options">
-			<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6">
-				<h2 class="researchStudy_title">Choose a research study:</h2>
-			</div>
-			<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-				<select class="studyClass" name="studyName">
-					<option value="">-- Select condition--</option>
-					<option value="cutaneousOncology">CutaneousOncology Trials</option>
-					<option value="lung">Lung Trials</option>
-					<option value="genito-urinary">Genito-urinary Trials</option>
-					<option value="breast">Breast Trials</option>
-				</select>
-			</div>
-		</div>
-		<div class="grid-x options">
-			<div class="large-8 large-offset-1 medium-6 medium-offset-1 small-6">
-				<h2 class="condition_title">Condition:</h2>
-			</div>
-			<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-				<select class="conditionClass" name="conditionName">
-				</select>
-			</div>
-		</div>
+		<section class="pageBody ">
+			<div class="options grid-container">
+				<div class="optionList grid-x grid-margin-x">
 
-		<div class="grid-x options">
-			<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-				<h2 class="otherTerm_title">Other Term:</h2>
-			</div>
-			<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-				<select class="otherClass" name="otherName">
-					<option value=""></option>
-					<option value=""></option>
-				</select>
-			</div>
-		</div>
+					<div class="cell large-12">
+						<div class="card">
+							<!-- Condition -->
+							<label class="radioOptions condition large-8 medium-10 small-6">
+								<div class="large-8 large-offset-1 medium-1 medium-offset-1 small-6 small-offset-1">
+									<h2 class="researchStudy_title">Disease Site</h2>
+								</div>
+								<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+									<label>
+										<input class="conditions" type="radio" name="condition" value="0" />
+										<i>Lung</i>
+									</label>
+									<label>
+										<input class="conditions" type="radio" name="condition" value="1" />
+										<i>Geneto Urinary</i>
+									</label>
+									<label>
+										<input class="conditions" type="radio" name="condition" value="2" />
+										<i>Cutaneous</i>
+									</label>
+									<label>
+										<input class="conditions" type="radio" name="condition" value="3" />
+										<i>Breast</i>
+									</label>
+								</div>
+							</label>
+						</div>
+					</div>
 
-		<div class="grid-x options">
-			<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-				<h2 class="otherTerm_title">Level 4</h2>
-			</div>
-			<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-				<select class="otherClass_level4" name="otherName">
-					<option value=""></option>
-					<option value=""></option>
-				</select>
-			</div>
-		</div>
+					<div class="cell large-12">
+						<div class="card">
+							<!-- LEVEL  1 -->
+							<label class="radioOptions lvl1 large-8 medium-10 small-6">
 
-		<div class="grid-x options">
-			<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-				<h2 class="otherTerm_title">Level 5</h2>
-			</div>
-			<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10">
-				<select class="otherClass_level5" name="otherName">
-					<option value=""></option>
-					<option value=""></option>
-				</select>
-			</div>
-		</div>
 
-			<div class="grid-x btn">
-				<div class="large-10 large-offset-1 medium-10 medium-offset-1 small-10 small-offset-1">
-					<a href="#" class="button button_findEligibleStudy">Find Eligible Study</a>
+							</label>
+						</div>
+					</div>
+
+					<div class="cell large-12">
+						<div class="card">
+							<!-- LEVEL  2 -->
+							<label class="radioOptions lvl2 large-8 medium-10 small-6">
+
+							</label>
+						</div>
+					</div>
+
+					<div class="cell large-12">
+						<div class="card">
+							<!-- LEVEL  3 -->
+							<label class="radioOptions lvl3 large-8 medium-10 small-6">
+
+							</label>
+						</div>
+					</div>
+
+					<div class="cell large-12">
+						<div class="card">
+							<label class="radioOptions basket large-8 medium-10 small-6">
+								<div class="large-8 large-offset-1 medium-10 medium-offset-1 small-6 small-offset-1">
+									<h2 class="researchStudy_title">Basket Study Eligibility </h2>
+									<input class="basketStudy" type="checkBox" name="BasketStudy" />
+									<i>Over 70 </i>
+								</div>
+							</label>
+						</div>
+					</div>
+
+
+
+
+				</div>
+				<div class="grid-x">
+					<div class="large-5 large-offset-5 medium-3 medium-offset-4 small-10 small-offset-3">
+						<a href="#" class="button button_findEligibleStudy">Find Eligible Study</a>
+					</div>
 				</div>
 			</div>
 		</section>
 
-		
+
 
 		<!-- Main Page Footer -->
 		<footer class="grid-x">
@@ -200,19 +223,19 @@
 	</main>
 
 	<main class="resultsPage page">
-	<!-- Results Page Header -->
+		<!-- Results Page Header -->
 		<div class="grid-x">
 			<div class="large-12 medium-12 small-12 green-1 sizeBarHeader">
 				<!-- <br> -->
 				<div class="grid-x headerBar">
 					<div class="large-1 medium-1 small-1 backBtn">
-						<img class="arrowClass" src=images/back.png>
+						<img id="arrowDivResults" class="arrowClass arrowClass1" src=images/back.png>
 					</div>
 					<div class="large-10 medium-10 small-10 headerLogo">
 						<img src="images/lakeridge-logo.png" class="logoclass">
 					</div>
 					<div class="large-1 medium-1 small-1 burgerMenu">
-						<img class="hamburger" data-click-state="1" src="images/hamburger.png"alt="Menu" />
+						<img id="hamburger3" data-click-state="1" src="images/hamburger.png" alt="Menu" />
 					</div>
 				</div>
 			</div>
@@ -230,27 +253,38 @@
 					</div>
 					<div class="grid-x">
 						<div class="large-12 large-offset-0 medium-12 medium-offset-0 small-12 small-offset-0">
-								<div class="grid-x recruitment_box">
-									<div class="large-6 medium-6 small-6 openforRecruitmentContainer recruitmentContainer">
-										<div class="grid-x">
-											<div class="large-1 medium-1 small-1 circle">
-												<img class="greenCircle " src="images/greenCircle.png">
-											</div>
-											<div class="large-11 medium-11 small-11">
-												<h4 class="recruitment_status">Open to Recruitment</h4>
-											</div>
+							<div class="grid-x recruitment_box">
+								<div class="large-4 medium-4 small-4 openforRecruitmentContainer recruitmentContainer">
+									<div class="grid-x">
+										<div class="large-1 medium-1 small-1 circle">
+											<div class="greenCircle"></div>
+										</div>
+										<div class="large-11 medium-11 small-11">
+											<h4 class="recruitment_status">Open to Recruitment</h4>
 										</div>
 									</div>
-									<div class="large-6 medium-6 small-6 closedforRecruitmentContainer recruitmentContainer">
-										<div class="grid-x">
-											<div class="large-1 medium-1 small-1 circle">
-												<img class="orangeCircle" src="images/orangeCircle.png">
-											</div>
-											<div class="large-11 medium-11 small-11">
-												<h4 class="recruitment_status">Closed to Recruitment</h4>
-											</div>
+								</div>
+								<div class="large-4 medium-4 small-4 closedforRecruitmentContainer recruitmentContainer">
+									<div class="grid-x">
+										<div class="large-1 medium-1 small-1 circle">
+											<div class="orangeCircle"></div>
+										</div>
+										<div class="large-11 medium-11 small-11">
+											<h4 class="recruitment_status">Closed to Recruitment</h4>
 										</div>
 									</div>
+								</div>
+								<div class="large-4 medium-4 small-4 notEligibleRecruitmentContainer recruitmentContainer">
+									<div class="grid-x">
+										<div class="large-1 medium-1 small-1 circle">
+											<div class="greyCircle"></div>
+
+										</div>
+										<div class="large-11 medium-11 small-11">
+											<h4 class="recruitment_status">Not Eligible</h4>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="grid-x">
 								<div class="large-12 medium-12 small-12">
@@ -259,7 +293,13 @@
 											<h2></h2>
 										</div>
 										<div class="resultDetails">
-											Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit cum error fuga, aliquid nam beatae perspiciatis autem alias officiis, numquam quibusdam asperiores consequuntur unde tempore? Ullam fugiat eligendi aspernatur asperiores, omnis cupiditate.
+											<!-- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit cum error fuga, aliquid nam beatae perspiciatis autem alias officiis, numquam quibusdam asperiores consequuntur unde tempore? Ullam fugiat eligendi aspernatur asperiores, omnis cupiditate. -->
+										</div>
+										<div class="basketResultName">
+											<h2>Basket Study</h2>
+										</div>
+										<div class="basketResultDetails">
+											<!-- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit cum error fuga, aliquid nam beatae perspiciatis autem alias officiis, numquam quibusdam asperiores consequuntur unde tempore? Ullam fugiat eligendi aspernatur asperiores, omnis cupiditate. -->
 										</div>
 									</div>
 								</div>
@@ -288,7 +328,7 @@
 									<h5 class="contactDetail01">123 Bloor St. W, ON L2E 4G5</h5>
 									<h5 class="contactDetail01">sample.email@gmail.com</h5>
 									<h5 class="contactDetail01">websiteaddress.ca</h5>
-										
+
 								</div>
 							</div>
 						</div>
@@ -297,14 +337,14 @@
 				</div>
 			</div>
 		</section>
-		
+
 		<!-- <br class="hide-for-large">
 		<br class="hide-for-large">
 		<br class="hide-for-large">
 		<br class="hide-for-large">
 		<br class="hide-for-large">
 		<br class="hide-for-large"> -->
-		
+
 		<!-- Results Page Footer -->
 		<footer class="grid-x">
 			<div class="grid-container large-12 medium-12 small-12 greyBarFooter">
@@ -326,7 +366,7 @@
 		</footer>
 	</main>
 
-	
+
 
 	<!----
       <div class="grid-x grid-padding-x">
